@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+
+{% block title %}EduPATHWAY Profile{% endblock %}
+
+{% block content %}
+    <!-- Profile Section -->
+    <div class="container text-center mt-5" id="profile">
+        <div class="card profile-card">
+            <div class="card-body">
+                <img src="{{ url_for('.static', filename='img/' + profile_path) }}" alt="Profile Picture" class="profile-img" id="profile-img">
+                <input type="file" id="upload-picture" class="form-control d-none" accept="image/*">
+                <label for="upload-picture" class="btn btn-secondary d-none" id="upload-label">Change Picture</label>
+                <!-- Editable Fields -->
+                <h3 class="editable text-black" id="student-name">{{ user.name }}</h3>
+                <p class="not-editable text-black" id="student-email" style="margin-bottom: 5px;">{{ user.email }}</p>
+                <p class="not-editable text-black" id="student-phone" style="margin-bottom: 5px;">{{ user.phone_number }}</p>
+                <p class="not-editable text-black" id="student-address" style="margin-bottom: 5px;">{{ user.address }}</p>
+                
+                <!-- Edit and Save Buttons -->
+                <button class="btn btn-primary" id="edit-btn">Edit Profile</button>
+                <button class="btn btn-success d-none" id="save-btn">Save Changes</button>
+                
+                {% if user.role == 'Admin' %}
+                <a href="{{ url_for('app_views_admin.home') }}" class="btn btn-primary" id="admin-panel-btn">Admin Panel</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Academics Section -->
+    <div class="container-fluid py-5">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h1>Enrolled Programs</h1>
+            </div>
+            <div class="container-fluid py-5" id="programs">
+                <div class="row">
+                    {% if all_programs %}
+                        {% for program in all_programs %}
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="rounded overflow-hidden mb-2">
+                                <img class="img-fluid" src="{{ url_for('.static', filename='img/' + program.image) }}" alt="">
+                                <div class="bg-secondary p-4">
+                                    <div class="d-flex justify-content-between mb-3">
+                                        <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>{{ program.students }} Students</small>
+                                        <small class="m-0"><i class="fas fa-book text-primary mr-2"></i>{{ program.total_courses }} Courses</small>
+                                    </div>
+                                    <a class="h5" href="{{ url_for('app_views_curriculum.home', program_id=program.id) }}">{{ program.title }}</a>
+                                    <div class="border-top mt-4 pt-4">
+                                        <!-- Progress bar -->
+                                        <div class="progress" style="height: 25px;">
+                                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="{{ program.progress }}" aria-valuemin="0" aria-valuemax="100" 
+                                                 data-progress="{{ program.progress }}">
+                                                {{ program.progress }}%
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="col-12 text-center">
+                            <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">You are not registered for any programs yet.</h5>
+                            <div class="d-flex justify-content-center mt-4">
+                                <a href="{{ url_for('app_views_home.programs') }}" class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold">Browse Programs</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const editButton = document.getElementById('edit-btn');
+            const saveButton = document.getElementById('save-btn');
+            const uploadLabel = document.getElementById('upload-label');
+            const uploadInput = document.getElementById('upload-picture');
+
+            // Editable fields
+            const nameField = document.getElementById('student-name');
+            const emailField = document.getElementById('student-email');
+            const phoneField = document.getElementById('student-phone');
+            const addressField = document.getElementById('student-address');
+            const profileImg = document.getElementById('profile-img');
+
+            // Store original values for later comparison if needed
+            const originalName = nameField.innerHTML;
+            const originalEmail = emailField.innerHTML;
+            const originalPhone = phoneField.innerHTML;
+            const originalAddress = addressField.innerHTML;
+
+            // Toggle edit mode
+            editButton.addEventListener('click', function () {
+                nameField.innerHTML = `<input type="text" id="edit-name" value="${originalName}">`;
+                emailField.innerHTML = `<input type="email" id="edit-email" value="${originalEmail}">`;
+                phoneField.innerHTML = `<input type="text" id="edit-phone" value="${originalPhone}">`;
+                addressField.innerHTML = `<input type="text" id="edit-address" value="${originalAddress}">`;
+
+                // Show the image upload button
+                uploadLabel.classList.remove('d-none');
+
+                // Show save button and hide edit button
+                saveButton.classList.remove('d-none');
+                editButton.classList.add('d-none');
+            });
+
+            // Save changes
+            saveButton.addEventListener('click', function () {
+                const newName = document.getElementById('edit-name').value;
+                const newEmail = document.getElementById('edit-email').value;
+                const newPhone = document.getElementById('edit-phone').value;
+                const newAddress = document.getElementById('edit-address').value;
+
+                const newImage = uploadInput.files[0]; // Get the image file
+                const formData = new FormData();
+                formData.append('name', newName);
+                formData.append('email', newEmail);
+                formData.append('phone_number', newPhone);
+                formData.append('address', newAddress);
+                formData.append('user_id', "{{ user.id }}");
+
+                if (newImage) {
+                    formData.append('profile_image', newImage);
+                }
+
+                // Send all data (image and profile info) in one request
+                fetch('/auth/profile', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        profileImg.src = data.profile_image_url || profileImg.src; // Update image if available
+                        nameField.innerHTML = newName;
+                        emailField.innerHTML = newEmail;
+                        phoneField.innerHTML = newPhone;
+                        addressField.innerHTML = newAddress;
+                        location.reload(); // Reload to reflect changes
+                    } else {
+                        alert('Failed to update profile.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error updating profile.');
+                });
+
+                saveButton.classList.add('d-none');
+                editButton.classList.remove('d-none');
+                uploadLabel.classList.add('d-none');
+            });
+
+            // Dynamically set the width of each progress bar based on its data-progress attribute
+            const progressBars = document.querySelectorAll('.progress-bar');
+            progressBars.forEach(function (progressBar) {
+                const progress = progressBar.getAttribute('data-progress');
+                progressBar.style.width = progress + '%';
+            });
+        });
+    </script>
+{% endblock %}

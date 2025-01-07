@@ -1,0 +1,155 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f7fb;
+    color: #333;
+}
+
+header {
+    background-color: #2a2a2a;
+    color: #fff;
+    padding: 20px 40px;
+    text-align: center;
+    font-size: 24px;
+    letter-spacing: 1px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #3b3b3b;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav a {
+    color: white;
+    margin: 0 20px;
+    font-size: 16px;
+    text-decoration: none;
+    padding: 8px 16px;
+    transition: background-color 0.3s ease;
+    border-radius: 4px;
+}
+
+nav a:hover {
+    background-color: #575757;
+}
+
+.container {
+    padding: 40px;
+}
+
+.card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #444;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    transition: border 0.3s ease, background-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #3b9e6f;
+    background-color: #fff;
+}
+
+button {
+    background-color: #3b9e6f;
+    color: white;
+    font-size: 16px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #358a5f;
+}
+
+.resource-list, .task-list, .course-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.resource-list li, .task-list li, .course-list li {
+    background: #f9f9f9;
+    margin: 10px 0;
+    padding: 15px;
+    border: 1px solid #e1e1e1;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.resource-list li span, .task-list li span, .course-list li span {
+    display: inline-flex;
+}
+
+.action-buttons button {
+    margin-left: 10px;
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #ff6f61;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.action-buttons button:hover {
+    background-color: #e34e42;
+}
+
+.question-block {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 6px;
+    background-color: #f0f4f7;
+}
+
+.options label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.options input,
+.options select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}

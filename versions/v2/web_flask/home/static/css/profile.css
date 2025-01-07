@@ -1,0 +1,48 @@
+/* Global Styles */
+
+body {
+  background-color: #fafaf8;
+}
+
+.bg-orange {
+  background-color: #ff7300 !important;
+}
+
+.text-orange {
+  color: #ff7300 !important;
+}
+
+/* Profile Card */
+.profile-card {
+  margin-top: 20px;
+  margin-bottom: -45px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: none;
+}
+
+.profile-img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-top: -55px;
+  border: 5px solid white;
+}
+#edit-btn {
+  background-color: #ff7300 !important; /* Orange color */
+  color: white !important; /* White text */
+  border: none;
+}
+
+#edit-btn:hover {
+  background-color: #e06100 !important; /* Darker shade for hover effect */
+}
+
+.card {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.editable {
+  cursor: pointer;
+}
+

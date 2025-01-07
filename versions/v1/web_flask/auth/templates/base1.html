@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>{%block title %} {% endblock %}</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+    {% block style %}
+    {% endblock %}
+
+    <!-- Favicon -->
+    <link href="./static/img/favicon.png" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('.static', filename='lib/owlcarousel/assets/owl.carousel.min.css') }}">
+
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('.static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('.static', filename='css/profile.css') }}">
+    
+</head>
+
+<body>
+    <!-- Topbar Start -->
+    <div class="container-fluid d-none d-lg-block">
+        <div class="row align-items-center py-4 px-xl-5">
+            <div class="col-lg-3">
+                <a href="" class="text-decoration-none">
+                    <h1 class="m-0"><span class="text-primary">Edu</span>PATHWAY</h1>
+                </a>
+            </div>
+            <div class="col-lg-3 text-right">
+                <div class="d-inline-flex align-items-center">
+                    <i class="fa fa-2x fa-map-marker-alt text-primary mr-3"></i>
+                    <div class="text-left">
+                        <h6 class="font-weight-semi-bold mb-1">Our Office</h6>
+                        <small>{{ admin_address }}</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 text-right">
+                <div class="d-inline-flex align-items-center">
+                    <i class="fa fa-2x fa-envelope text-primary mr-3"></i>
+                    <div class="text-left">
+                        <h6 class="font-weight-semi-bold mb-1">Email Us</h6>
+                        <small>{{ admin_email }}</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 text-right">
+                <div class="d-inline-flex align-items-center">
+                    <i class="fa fa-2x fa-phone text-primary mr-3"></i>
+                    <div class="text-left">
+                        <h6 class="font-weight-semi-bold mb-1">Call Us</h6>
+                        <small>{{ admin_phone_number }}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <div class="container-fluid sticky-top bg-white shadow-sm">
+        <div class="row border-top px-xl-5">
+            <div class="col-lg-3 d-none d-lg-block">
+                <a class="d-flex align-items-center justify-content-between bg-secondary w-100 text-decoration-none" data-toggle="collapse" href="#navbar-vertical" style="height: 67px; padding: 0 30px;">
+                    <h5 class="text-primary m-0"><i class="fa fa-book-open mr-2"></i>Programs</h5>
+                    <i class="fa fa-angle-down text-primary"></i>
+                </a>
+                <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 9;">
+                    <div class="navbar-nav w-100">
+                        {% for name, id in programs.items() %}
+                        <a href="{{ url_for('app_views_curriculum.home', program_id=id) }}" class="nav-item nav-link">{{ name }}</a>
+                    {% endfor %}
+                    
+                    </div>
+                </nav>
+            </div>            
+            <div class="col-lg-9">
+                <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
+                    <a href="" class="text-decoration-none d-block d-lg-none">
+                        <h1 class="m-0"><span class="text-primary">Edu</span>PATHWAY</h1>
+                    </a>
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav py-0 d-flex justify-content-center w-100">
+                            <a href="{{ url_for('app_views_home.home') }}" class="nav-item nav-link {% if current_page == 'home' %}active{% endif %} mr-5">Home</a>
+                            <a href="{{ url_for('app_views_home.about') }}" class="nav-item nav-link {% if current_page == 'about' %}active{% endif %} mr-5">About</a>
+                            <a href="{{ url_for('app_views_home.programs') }}" class="nav-item nav-link {% if current_page == 'programs' %}active{% endif %} mr-5">Programs</a>
+                            <a href="{{ url_for('app_views_home.courses') }}" class="nav-item nav-link {% if current_page == 'courses' %}active{% endif %} mr-5">Courses</a>
+                            {% if user.is_authenticated %}
+                            <a href="{{ url_for('app_views_auth.profile') }}" class="nav-item nav-link {% if current_page == 'dashboard' %}active{% endif %} mr-5">Dashboard</a>
+                            {% endif %}                         
+                        </div>
+                        {% if user.is_authenticated %}
+                        <!-- Profile Section -->
+                        <div class="dropdown" id="profileSection">
+                            <a class="btn p-0 ml-auto d-block d-sm-block" href="#" id="profileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="{{ url_for('.static', filename='img/' + profile_path) }}" alt="Profile Picture" class="rounded-circle" style="width: 60px; height: 60px;">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow" aria-labelledby="profileDropdown" style="width: 200px;">
+                                <a href="{{ url_for('app_views_auth.profile') }}" class="dropdown-item">View Profile</a>
+                                <a href="{{ url_for('app_views_auth.log_out') }}" class="dropdown-item text-danger" id="logoutButton">Logout</a>
+                            </div>
+                        </div>
+                        {% else %}
+                        <!-- Sign In Section -->
+                        <div class="dropdown" id="signInSection">
+                            <a class="btn btn-primary py-2 px-4 ml-auto d-block d-sm-inline-block dropdown-toggle" href="#" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Sign In
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right p-4 shadow" aria-labelledby="dropdownMenuButton" style="width: 300px;">
+                                <!-- Sign In Form -->
+                                <h5 class="text-center mb-3">Sign In Now</h5>
+                                <form method="POST" action="{{ url_for('app_views_auth.login_view') }}" id="signInForm">
+                                    {{ sign_in_form.hidden_tag() }} <!-- CSRF token -->
+                        
+                                    <div class="form-group">
+                                        <label for="email" class="sr-only">Your Email</label>
+                                        {{ sign_in_form.email(class="form-control border-0 p-4", placeholder="Your Email") }}
+                                    </div>
+                        
+                                    <div class="form-group">
+                                        <label for="password" class="sr-only">Your Password</label>
+                                        {{ sign_in_form.password(class="form-control border-0 p-4", placeholder="Your Password") }}
+                                    </div>
+                        
+                                    <div>
+                                        {{ sign_in_form.submit(class="btn btn-dark btn-block border-0 py-3") }}
+                                    </div>
+
+                                {% block signup %}
+                                {% endblock %}
+                                </form>
+                            </div>
+                        </div>
+                        {% endif %}
+                        <!-- Profile Dropdown -->
+                        <!-- Flash message -->
+                        {% for message in get_flashed_messages(with_categories=true) %}
+                            <div class="alert alert-dismissible fade show flash-message
+                                {% if message[0] == 'error' %} alert-danger {% else %} alert-success {% endif %}" 
+                                role="alert" id="flashMessage" 
+                                style="max-width: 600px; margin: 10px auto; text-align: center; position: fixed; top: 120px; left: 50%; transform: translateX(-50%); z-index: 9999;">
+                                <strong>{{ message[1] }}</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar End -->
+    {% block content %}
+
+    {% endblock %}
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+
+
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="{{ url_for('.static', filename='mail/jqBootstrapValidation.min.js') }}"></script>
+    <script src="{{ url_for('.static', filename='mail/contact.js') }}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{{ url_for('.static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('.static', filename='js/script.js') }}"></script>
+    <script src="../static/js/main.js"></script>
+</body>
+</html>

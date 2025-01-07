@@ -1,0 +1,269 @@
+{% extends "base.html" %}
+
+{% block title %} EduPATHWAY Home{% endblock %}
+{% block signup %}
+<div class="d-flex justify-content-center align-items-center vh-80">
+    <a href="#registration" class="text-decoration-none">Sign up</a>
+</div>
+
+{% endblock %}
+
+{% block content %}
+<!-- Flash message -->
+{% for message in get_flashed_messages(with_categories=true) %}
+    <div class="alert alert-dismissible fade show flash-message 
+        {% if message[0] == 'error' %} alert-danger {% else %} alert-success {% endif %}" 
+        role="alert" id="flashMessage"
+        style="max-width: 600px; margin: 10px auto; text-align: center; position: fixed; top: 120px; left: 50%; transform: translateX(-50%); z-index: 9999;">
+        <strong>{{ message[1] }}</strong>
+    </div>
+{% endfor %}
+
+    <!-- Carousel Start -->
+    <div class="container-fluid p-0 pb-5 mb-5">
+        <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#header-carousel" data-slide-to="0" class="active"></li>
+                <li data-target="#header-carousel" data-slide-to="1"></li>
+                <li data-target="#header-carousel" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active" style="min-height: 300px;">
+                    <img class="position-relative w-100" src="{{ url_for('.static', filename='img/carousel-1.jpg') }}" style="min-height: 300px; object-fit: cover;">
+                    <div class="carousel-caption d-flex align-items-center justify-content-center">
+                        <div class="p-5" style="width: 100%; max-width: 900px;">
+                            <h5 class="text-white text-uppercase mb-md-3">Best Online Courses</h5>
+                            <h1 class="display-3 text-white mb-md-4">Best Education From Your Home</h1>
+                            <a href="{{ url_for('app_views_home.about') }}" class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item" style="min-height: 300px;">
+                    <img class="position-relative w-100" src="{{ url_for('.static', filename='img/carousel-2.jpg') }}" style="min-height: 300px; object-fit: cover;">
+                    <div class="carousel-caption d-flex align-items-center justify-content-center">
+                        <div class="p-5" style="width: 100%; max-width: 900px;">
+                            <h5 class="text-white text-uppercase mb-md-3">Best Online Courses</h5>
+                            <h1 class="display-3 text-white mb-md-4">Best Online Learning Platform</h1>
+                            <a href="{{ url_for('app_views_home.about') }}" class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item" style="min-height: 300px;">
+                    <img class="position-relative w-100" src="{{ url_for('.static', filename='img/carousel-3.jpg') }}" style="min-height: 300px; object-fit: cover;">
+                    <div class="carousel-caption d-flex align-items-center justify-content-center">
+                        <div class="p-5" style="width: 100%; max-width: 900px;">
+                            <h5 class="text-white text-uppercase mb-md-3">Best Online Courses</h5>
+                            <h1 class="display-3 text-white mb-md-4">New Way To Learn From Home</h1>
+                            <a href="{{ url_for('app_views_home.about') }}" class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Carousel End -->
+
+
+    <!-- About Start -->
+    <div class="container-fluid py-5" id="about-us">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-5">
+                    <img class="img-fluid rounded mb-4 mb-lg-0" src="{{ url_for('.static', filename='img/about.jpg') }}" alt="">
+                </div>
+                <div class="col-lg-7">
+                    <div class="text-left mb-4">
+                        <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">About Us</h5>
+                        <h1>Innovative Way To Learn</h1>
+                    </div>
+                    <p>We are committed to providing quality, free education to people around the world, breaking barriers and promoting equality. Our platform aims to support the Global SDGs by offering accessible learning resources to individuals regardless of their background. We believe education is a fundamental right that empowers individuals, drives social change, and creates opportunities. Our mission is to remove the obstacles to learning and create a global community where education is available to everyone, anywhere, anytime.</p>
+                    <a href="{{ url_for('app_views_home.about') }}" class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+
+    <!-- Courses Start -->
+    <div class="container-fluid py-5" id="courses">
+        <div class="container pt-5 pb-3" class="d-flex justify-content-center">
+            <div class="text-center mb-5">
+                <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">Subjects</h5>
+                <h1>Explore Top Subjects</h1>
+            </div>
+
+            <!-- This is the part that will show the top courses, we will use one div with jinja and then delete the rest inside the row div -->
+
+            <div class="row">
+                {% for course in courses_data %}
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="cat-item position-relative overflow-hidden rounded mb-2">
+                            <img class="img-fluid" src="{{ url_for('.static', filename='img/' + course.image) }}" alt="">
+                            <a class="cat-overlay text-white text-decoration-none" href="{{ url_for('app_views_curriculum.home', program_id=course.program_id) }}">
+                                <h4 class="text-white font-weight-medium text-center">{{ course.name }}</h4>
+                                <span class="text-center"> {{ course.program }}</span>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <!-- Do not delete this one yet -->
+            <div class="d-flex justify-content-center mt-4">
+                <a href="{{ url_for('app_views_home.courses') }}" class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold">Browse More</a>
+            </div>
+        </div>
+    </div>
+    <!-- Category Start -->
+
+
+    <!-- Programs Start -->
+    <div class="container-fluid py-5" id="programs">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">Programs</h5>
+                <h1>Our Popular Programs</h1>
+            </div>
+            <div class="row">
+                {% for course in courses %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="rounded overflow-hidden mb-2">
+                        <img class="img-fluid" src="{{ url_for('.static', filename='img/' + course.image) }}" alt="">
+                        <div class="bg-secondary p-4">
+                            <div class="d-flex justify-content-between mb-3">
+                                <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>{{ course.students }} Students</small>
+                                <small class="m-0"><i class="fas fa-book text-primary mr-2"></i>{{ course.total_courses }} Courses</small>
+                            </div>
+                            <a class="h5" href="{{ url_for('app_views_curriculum.home', program_id=course.id) }}">{{ course.title }}</a>
+                            <div class="border-top mt-4 pt-4">
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>{{ course.rating }}</h6>
+                                    <h5 class="m-0">Free</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <!-- Centered Learn More Button -->
+            <div class="d-flex justify-content-center mt-4">
+                <a href="{{ url_for('app_views_home.programs') }}" class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold">Browse More</a>
+            </div>
+        </div>
+    </div>
+    <!-- Registration Start -->
+    <div class="container-fluid bg-registration py-5" style="margin: 90px 0;" id="registration">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-7 mb-5 mb-lg-0">
+                    <div class="mb-4">
+                        <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">Need Any Courses</h5>
+                        <h1 class="text-white">Enroll Today for Free</h1>
+                    </div>
+                    <p class="text-white">Embark on a journey of knowledge and growth with our diverse range of online courses. Whether you're looking to advance your career or explore new interests, we have the perfect program for you.</p>
+                    <ul class="list-inline text-white m-0">
+                        <li class="py-2"><i class="fa fa-check text-primary mr-3"></i>Expert instructors guiding you every step of the way</li>
+                        <li class="py-2"><i class="fa fa-check text-primary mr-3"></i>Flexible learning schedules to fit your lifestyle</li>
+                        <li class="py-2"><i class="fa fa-check text-primary mr-3"></i>Access to online resources and learning materials anytime</li>
+                    </ul>
+                </div>
+                <div class="col-lg-5" >
+                    <div class="card border-0">
+                        <div class="card-header bg-light text-center p-4">
+                            <h1 class="m-0">Sign Up Now</h1>
+                        </div>
+                        <div class="card-body rounded-bottom bg-primary p-5" >
+                            <form method="POST" action="{{ url_for('app_views_auth.sign_up') }}">
+                                {{ form.hidden_tag() }} <!-- To prevent CSRF errors -->
+                
+                                <div class="form-group">
+                                    {{ form.name(class="form-control border-0 p-4", placeholder="Your name") }}
+                                    {% for error in form.name.errors %}
+                                        <div class="text-danger">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                
+                                <div class="form-group">
+                                    {{ form.email(class="form-control border-0 p-4", placeholder="Your email") }}
+                                    {% for error in form.email.errors %}
+                                        <div class="text-danger">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                
+                                <div class="form-group">
+                                    {{ form.phone_number(class="form-control border-0 p-4", placeholder="Your phone number") }}
+                                    {% for error in form.phone_number.errors %}
+                                        <div class="text-danger">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                
+                                <div class="form-group">
+                                    {{ form.password(class="form-control border-0 p-4", placeholder="Your Password") }}
+                                    {% for error in form.password.errors %}
+                                        <div class="text-danger">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                
+                                <div class="form-group">
+                                    {{ form.confirm_password(class="form-control border-0 p-4", placeholder="Confirm your password") }}
+                                    {% for error in form.confirm_password.errors %}
+                                        <div class="text-danger">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                
+                                <div class="form-group">
+                                    {{ form.address(class="form-control border-0 p-4", placeholder="Your Address") }}
+                                    {% for error in form.address.errors %}
+                                        <div class="text-danger">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                
+                                <div>
+                                    {{ form.submit(class="btn btn-dark btn-block border-0 py-3") }}
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div>
+    <!-- Registration End -->
+
+    <!-- Testimonial Start -->
+    <div class="container-fluid py-5">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">Our Objectives</h5>
+                <h1>Building a Global Learning Community</h1>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="owl-carousel testimonial-carousel">
+                        <div class="text-center">
+                            <i class="fa fa-3x fa-quote-left text-primary mb-4"></i>
+                            <h4 class="font-weight-normal mb-4">We provide universal access to quality education through digital platforms and resources, breaking down barriers worldwide.</h4>
+                        </div>
+                        <div class="text-center">
+                            <i class="fa fa-3x fa-quote-left text-primary mb-4"></i>
+                            <h4 class="font-weight-normal mb-4">We promote inclusivity by offering flexible learning opportunities and supporting diverse learning needs and backgrounds.</h4>
+                        </div>
+                        <div class="text-center">
+                            <i class="fa fa-3x fa-quote-left text-primary mb-4"></i>
+                            <h4 class="font-weight-normal mb-4">We foster a collaborative global community of educators, students, and professionals to exchange knowledge and drive positive change.</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Testimonial End -->
+
+    <!-- Testimonial End -->
+
+
+
+
+    <!-- Fashing script -->        
+{% endblock %}

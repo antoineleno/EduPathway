@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}E-Learnings{% endblock %}
+
+{% block content %}
+
+    <div class="container-fluid page-header" style="margin-bottom: -80px;">
+        <div class="container">
+            <div class="d-flex flex-column justify-content-center" style="min-height: 300px">
+                <h3 class="display-4 text-white text-uppercase">404 Page not Found</h3>
+                <div class="d-inline-flex text-white">
+                    <p class="m-0 text-uppercase"><a class="text-white" href="{{ url_for('app_views_home.home') }}">Home</a></p>
+                    <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                    <p class="m-0 text-uppercase">404 Page not Found</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 404 Error Message -->
+    <div class="container d-flex justify-content-center align-items-center" style="min-height: 60vh;">
+        <div class="error-container text-center">
+            <h1>404</h1>
+            <h2>Oops! Page Not Found</h2>
+        </div>
+    </div>
+
+    {% block extra_styles %}
+    <style>
+        /* Reset default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 404 Page Styles */
+        .error-container h1 {
+            font-size: 150px;
+            font-weight: bold;
+            color: orangered;
+            margin-bottom: 20px;
+        }
+
+        .error-container h2 {
+            font-size: 24px;
+            color: #555;
+        }
+
+        /* Responsive design adjustments */
+        @media (max-width: 600px) {
+            .error-container h1 {
+                font-size: 120px;
+            }
+
+            .error-container h2 {
+                font-size: 20px;
+            }
+        }
+    </style>
+    {% endblock %}
+
+{% endblock %}

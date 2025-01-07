@@ -1,0 +1,749 @@
+{% extends "base1.html" %}
+
+{% block title %}EduPATHWAY {{course.name}} {% endblock %}
+{% block style %}
+    <style>
+        /* Global Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+
+        /* Main Layout */
+        .course-container {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            height: 90vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background-color: #343a40;
+            color: white;
+            width: 250px;
+            min-width: 250px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+            margin-top: 40px;  /* Adjust top margin */
+            margin-bottom: 35px;
+            overflow-y: auto;
+            max-height: calc(90vh - 40px); /* Adjust for margins */
+        }
+
+        .sidebar h4 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .lesson-link {
+            display: block;
+            padding: 12px 20px;
+            text-decoration: none;
+            color: #f8f9fa;
+            background: linear-gradient(135deg, #495057, #6c757d);
+            border-radius: 5px;
+            transition: 0.3s ease;
+        }
+
+        .lesson-link:hover {
+            background: linear-gradient(135deg, #6c757d, #adb5bd);
+            transform: scale(1.05);
+        }
+
+        .lesson-link.active {
+            background: orangered;
+        }
+
+        /* Content Area */
+        .content {
+            padding: 40px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            overflow-y: auto;
+        }
+
+        .lesson-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .lesson-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: #343a40;
+        }
+
+        .lesson-description {
+            font-size: 16px;
+            color: #555;
+            margin-top: 15px;
+        }
+
+        /* Task Section */
+        .task-section, .quiz-section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            display: none;
+        }
+
+        .task-title, .quiz-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .task-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .task-item {
+            background: #f8f9fa;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .task-item button {
+            padding: 5px 10px;
+            background: orangered;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .task-item button:hover {
+            background: orange;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        .quiz-section {
+            font-family: 'Inter', sans-serif;
+            margin: 50px auto;
+            width: 90%;
+            max-width: 900px;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .quiz-section:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+        }
+
+        .quiz-title {
+            text-align: center;
+            color: #333333;
+            font-size: 2em;
+            font-weight: 800;
+            margin-bottom: 30px;
+            letter-spacing: 1.5px;
+            background: linear-gradient(90deg, #1e90ff, #00c6ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        #timer-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .timer-label {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: #444444;
+        }
+
+        #timer-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .timer-label {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: #444444;
+        }
+
+        #timer {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: #444444;
+            padding: 15px 30px;
+            border: 2px solid #1e90ff;
+            border-radius: 10px;
+            background-color: rgba(30, 144, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #time-remaining {
+            font-weight: 700;
+            font-size: 1.5em;
+            color: #d9534f;
+            animation: pulse 1s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from {
+                transform: scale(1);
+            }
+            to {
+                transform: scale(1.1);
+            }
+        }
+
+        /* Quiz Section Styling */
+        #quiz-section {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .quiz-title {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #timer {
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .quiz-item {
+            margin-bottom: 30px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .quiz-question h5 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .quiz-options {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .quiz-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .quiz-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 16px;
+            color: #333;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .quiz-label input[type="radio"] {
+            display: none;
+        }
+
+        .custom-radio {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid #333;
+            background-color: #fff;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .quiz-label input[type="radio"]:checked + .custom-radio {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .quiz-label input[type="radio"]:checked + .custom-radio::after {
+            content: "";
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #fff;
+        }
+
+        .quiz-label:hover {
+            color: orangered
+        }
+
+
+        #submit-button {
+            display: block;
+            margin-left: 35%;
+            width: 25%;
+            padding: 2px;
+            background-color: #1e90ff;
+            color: #ffffff;
+            font-size: 1.3em;
+            font-weight: 600;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        #submit-button:hover {
+            background-color: #007acc;
+            transform: translateY(-4px);
+        }
+
+        #submit-button:active {
+            transform: translateY(2px);
+        }
+
+        /* Navigation Buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .nav-button,
+        .submit-button {
+            padding: 12px 20px;
+            background: orangered;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .nav-button:hover,
+        .submit-button:hover {
+            background: orange;
+            transform: scale(1.05);
+        }
+
+        .nav-button:disabled,
+        .submit-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .submit-button {
+            background: #28a745;
+        }
+
+        /* Result Section */
+        .result-section {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .course-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                box-shadow: none;
+            }
+
+            .content {
+                padding: 20px;
+            }
+        }
+
+        button[type="submit"]
+        {
+            background: linear-gradient(135deg, orangered, orange); /* Gradient background */
+            color: #ffffff; /* White text */
+            font-size: 1.2rem; /* Larger font size */
+            padding: 10px 10px; /* Spacing around text */
+            border: none; /* Remove border */
+            border-radius: 25px; /* Rounded corners */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effect */
+        }
+
+        button[type="submit"]:hover {
+            transform: translateY(-3px); /* Lift effect on hover */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+        }
+
+        button[type="submit"]:active {
+            transform: translateY(2px); /* Push effect when clicked */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Reduced shadow */
+        }
+
+            /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0); /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            right: 15px;
+            top: 10px;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <!-- Header Start -->
+    <div class="container-fluid page-header" style="margin-bottom: 0px;">
+        <div class="container">
+            <div class="d-flex flex-column justify-content-center" style="min-height: 300px">
+                <!-- Make the heading responsive with different font sizes at different breakpoints -->
+                <h3 class="display-4 text-white text-uppercase mb-4 mb-sm-2 mb-md-3 mb-lg-4">Data Science</h3>
+                
+                <!-- Adjust the breadcrumb for better layout and responsiveness -->
+                <div class="d-inline-flex flex-wrap text-white">
+                    <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
+                    <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                    <p class="m-0 text-uppercase"><a class="text-white" href="{{ url_for('app_views_home.programs', program_id=course.program.id) }}">Program</a></p>
+                    <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                    <p class="m-0 text-uppercase"><a class="text-white" href="{{ url_for('app_views_curriculum.home', program_id=course.program.id) }}">Data Science</a></p>
+                    <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                    <p class="m-0 text-uppercase">{{course.name}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Flash message -->
+    {% for message in get_flashed_messages(with_categories=true) %}
+        <div class="alert alert-dismissible fade show flash-message 
+            {% if message[0] == 'error' %} alert-danger {% else %} alert-success {% endif %}" 
+            role="alert" id="flashMessage"
+            style="max-width: 600px; margin: 10px auto; text-align: center; position: fixed; top: 120px; left: 50%; transform: translateX(-50%); z-index: 9999;">
+            <strong>{{ message[1] }}</strong>
+        </div>
+    {% endfor %}
+
+
+    <div class="course-container">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                {% if lessons %}
+                <h5 style="color: white;">Course Content</h5>
+                {% for lesson in lessons %}
+                <span class="lesson-link" data-lesson="{{ lesson.id }}">{{ lesson.title }}</span>
+                {% endfor %}
+                {% endif %}
+                {% if project_tasks %}
+                <a href="#" class="lesson-link" data-lesson="project">Project Tasks</a>
+                {% endif %}
+                {% if quiz_questions %}
+                <a href="#" class="lesson-link" data-lesson="quiz">Quiz</a>
+                {% endif %}
+            </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Dynamic Lesson Content -->
+            {% for lesson in lessons %}
+                <div id="{{ lesson.id }}" class="lesson-content">
+                    <h2 class="lesson-title">{{ lesson.title }}</h2>
+                    <p class="lesson-description">{{ lesson.description|safe}}</p>
+                </div>
+            {% endfor %}
+
+        <!-- Quiz Section -->
+        {% if quiz_questions %}
+            <form method="POST" action="{{ url_for('app_views_curriculum.course_content', course_id=course.id) }}" id="quiz-form">
+                <div id="quiz-section" class="quiz-section">
+                    <h4 class="quiz-title">Quiz : Test Your Knowledge</h4> <!-- Corrected closing tag for h4 -->
+
+                    <div id="timer">
+                        <h5>Time Remaining : <span id="time-remaining">00:00</span></h5>
+                    </div>
+
+                    {% for question in quiz_questions %}
+                        <div class="quiz-item">
+                            <div class="quiz-question">
+                                <h5><strong> {{ question.question }} </strong></h5>
+                            </div>
+                            <ul class="quiz-options">
+                                {% for option in question.options %}
+                                    <p>
+                                        <li>
+                                            <label class="quiz-label">
+                                                <input type="radio" name="{{ question.id }}" value="{{ option }}"> <!-- Optional 'required' added for validation -->
+                                                <span class="custom-radio"></span>
+                                                {{ option }}
+                                            </label>
+                                        </li>
+                                    </p>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endfor %}
+                    <button type="submit" id="submit-button">Submit</button>
+                </div>
+            </form>
+        {% endif %}
+        <!-- Result Modal -->
+        <div id="result-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3>Quiz Results</h3>
+                <p id="result-message">You scored: <span id="score">0</span></p>
+            </div>
+        </div>
+
+    <!-- Project Task Section -->
+    <div id="task-section" class="task-section">
+        <h3 class="task-title">Project Tasks</h3>
+        <ul class="task-list">
+            {% for task in project_tasks %}
+                <li class="task-item" style="margin-bottom: 15px;">
+                    <div>
+                        <strong>{{ task.task_name }}</strong><br>
+                        {{ task.description|safe }}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+            <button class="nav-button" id="previous-button" onclick="navigate('previous')">Previous</button>
+            <button class="nav-button" id="next-button" onclick="navigate('next')">Next</button>
+            <button class="nav-button" id="start-quiz-button" onclick="navigate('next'); startTimer();">Take Quiz</button>
+        </div>
+
+        <script>
+            let currentLesson = 0;
+            const lessons = Array.from(document.querySelectorAll('.lesson-link')).map(link => link.dataset.lesson);
+            const lessonLinks = document.querySelectorAll('.lesson-link');
+            const nextButton = document.getElementById('next-button');
+            const previousButton = document.getElementById('previous-button');
+            const lessonContent = document.querySelectorAll('.lesson-content');
+            const quizSection = document.getElementById('quiz-section');
+            const taskSection = document.getElementById('task-section');
+            const startQuizButton = document.getElementById('start-quiz-button');
+    
+            startQuizButton.style.display = 'none';
+            // Update lesson based on currentLesson
+            function updateLesson() {
+                lessonLinks.forEach(link => link.classList.remove('active'));
+    
+                const currentLessonKey = lessons[currentLesson];
+                const activeLink = document.querySelector(`.lesson-link[data-lesson="${currentLessonKey}"]`);
+                if (activeLink) activeLink.classList.add('active');
+    
+                // Hide all lessons and sections
+                lessonContent.forEach(lesson => lesson.style.display = 'none');
+                quizSection.style.display = 'none';
+                taskSection.style.display = 'none';
+    
+                // Show the current lesson or section
+                if (currentLessonKey === 'quiz') {
+                    quizSection.style.display = 'block';
+                } else if (currentLessonKey === 'project') {
+                    taskSection.style.display = 'block';
+                } else {
+                    document.getElementById(currentLessonKey).style.display = 'block';
+                }
+    
+                // Adjust button text based on current lesson
+                if (currentLesson === lessons.length - 3) {
+                    nextButton.textContent = 'See Project';
+                } else if (currentLesson  === lessons.length - 2) {
+                    nextButton.style.display = 'none';
+                    startQuizButton.style.display = 'block';
+                } else if (currentLesson === lessons.length - 1) {
+                    nextButton.style.display = 'none';
+                    startQuizButton.style.display = 'none';
+                } else {
+                    nextButton.textContent = 'Next';
+                }
+                
+    
+                // Disable the previous button when at the first lesson
+                previousButton.disabled = currentLesson === 0;
+            }
+    
+            // Navigation
+            function navigate(direction) {
+                if (direction === 'next') {
+                    if (currentLesson < lessons.length - 1) {
+                        currentLesson++;
+                    } else if (currentLesson === lessons.length - 2) {
+                        currentLesson = lessons.length - 1;
+                        updateLesson();
+                    }
+                } else if (direction === 'previous') {
+                    if (currentLesson > 0) {
+                        currentLesson--;
+                    }
+                }
+                updateLesson();
+            }
+    
+            // Initialize quiz state
+            let correctAnswers = 0;
+            let answeredQuestions = 0;
+    
+        // Dynamically count the number of quiz items
+        const quizItems = document.querySelectorAll('.quiz-item');
+        const totalQuestions = quizItems.length;
+        
+        // Set the time limit (in seconds)
+        const timeLimit = "{{ time_lit }}"; // Timer duration from template
+        
+        let timeRemaining = timeLimit;
+        const timeDisplay = document.getElementById('time-remaining');
+        const submitButton = document.getElementById('submit-button');
+        const quizForm = document.getElementById('quiz-form');
+        
+        
+        let timerInterval;  // Declare the interval but don't start it immediately
+        
+        const submitQuiz = () => {
+            document.getElementById('quiz-form').submit();  // Replace 'quizForm' with your form's ID
+        };
+        
+        // Function to update the timer every second
+        const updateTimer = () => {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            timeDisplay.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        
+            if (timeRemaining <= 0) {
+                clearInterval(timerInterval);
+                submitQuiz();  // Submit quiz when time runs out
+            } else {
+                timeRemaining--;
+            }
+        };
+        
+        // Function to start the timer
+        const startTimer = () => {
+            if (!timerInterval && timeRemaining > 0
+                
+            ) {  // Start only if timer isn't running
+                timerInterval = setInterval(updateTimer, 1000);  
+            }
+        };
+    
+        // Result Modal Logic
+        const resultModal = document.getElementById("result-modal");
+        const closeModal = document.getElementsByClassName("close")[0];
+    
+        // Show the modal when quiz is submitted (change `{{ score }}` after processing the score in Flask)
+        const showResultModal = (score) => {
+            document.getElementById("score").textContent = score;
+            resultModal.style.display = "block";
+        };
+    
+        // Close the modal when the user clicks "x"
+        closeModal.onclick = () => {
+            resultModal.style.display = "none";
+        };
+    
+        // Close the modal if the user clicks outside of it
+        window.onclick = (event) => {
+            if (event.target === resultModal) {
+                resultModal.style.display = "none";
+            }
+        };
+    
+    
+        // Initial Load
+        updateLesson();
+            
+    </script>
+{% endblock %}

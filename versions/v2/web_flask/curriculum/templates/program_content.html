@@ -1,0 +1,260 @@
+{% extends "base.html" %}
+
+{% block title %}EduPATHWAY {{current_program.name}} {% endblock %}
+
+{% block content %}
+    <!-- Header Start -->
+    <div class="container-fluid page-header" style="margin-bottom: 0px;">
+        <div class="container">
+            <div class="d-flex flex-column justify-content-center" style="min-height: 300px">
+                <h3 class="display-4 text-white text-uppercase">{{ current_program.name }}</h3>
+                <div class="d-inline-flex text-white">
+                    <p class="m-0 text-uppercase"><a class="text-white" href="{{ url_for('app_views_home.home') }}">Home</a></p>
+                    <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                    <p class="m-0 text-uppercase"><a class="text-white" href="{{ url_for('app_views_home.programs') }}">Program</a></p>
+                    <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                    <p class="m-0 text-uppercase">{{ current_program.name }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Flash message -->
+    {% for message in get_flashed_messages(with_categories=true) %}
+    <div class="alert alert-dismissible fade show flash-message 
+        {% if message[0] == 'error' %} alert-danger {% else %} alert-success {% endif %}" 
+        role="alert" id="flashMessage"
+        style="max-width: 600px; margin: 10px auto; text-align: center; position: fixed; top: 120px; left: 50%; transform: translateX(-50%); z-index: 9999;">
+        <strong>{{ message[1] }}</strong>
+    </div>
+    {% endfor %}
+    {% block extra_styles %}
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: left;
+            padding: 20px;
+            background: linear-gradient(135deg, #4b79a1, #283e51);
+            color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 75px;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        table th, table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        table th {
+            background-color: orangered;
+            color: #fff;
+            text-transform: uppercase;
+        }
+        table tr:last-child td {
+            border-bottom: none;
+        }
+        table tr:hover {
+            background-color: #f1f5f8;
+            cursor: pointer;
+        }
+        .resources-list {
+            margin: 0;
+            padding: 0;
+        }
+        .resources-list li {
+            margin: 5px 0;
+        }
+        .resources-list a {
+            color: #4b79a1;
+            text-decoration: none;
+        }
+        .resources-list a:hover {
+            text-decoration: underline;
+        }
+        .enroll-button {
+            padding: 10px 15px;
+            background-color: orangered;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .enroll-button:hover {
+            background-color: orange;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .form-check {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .status-icon {
+            margin-left: 10px;
+            width: 20px;
+            height: 20px;
+        }
+
+        .status-icon.done {
+            color: green;
+        }
+
+        .status-icon.pending {
+            color: red;
+        }
+    </style>
+{% endblock %}
+<div class="container">
+    <header>
+        <p>
+            {{ current_program.description }}
+        </p>
+    </header>
+    <table>
+        <thead>
+            <tr>
+                <th>Course</th>
+                <th>Description</th>
+                <th>Resources</th>
+                <th>Projects</th>
+                <th>Quiz</th>
+                {% if is_enrolled %}
+                    <th>Result</th>
+                    <th>Status</th>
+                {% endif %}
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for course in courses %}
+            <tr>
+                <td><a href="{{ url_for('app_views_curriculum.course_content', course_id=course.course_id) }}">{{ course.name }}</a></td>
+                <td>{{ course.description }}</td>
+                <td>
+                    <ul class="resources-list">
+                        {% for resource in course.resources %}
+                        <li><span style="color: rgb(103, 140, 221);">{{ resource[0] }}</span></li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    <ul class="projects-list">
+                        {% for project in course.projects %}
+                        <li><span style="color: orange;">{{ project[0] }}</span></li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    <ul class="quizzes-list">
+                        {% for quiz in course.quizzes %}
+                        <li><span style="color: orange;">{{ quiz[0] }}</span></li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                
+                {% if is_enrolled %}
+                <td>
+                {% for result in course.quiz_result %}
+                    {{ result }}%
+                {% endfor %}
+                </td>
+                {% endif %}
+
+                {% if is_enrolled %}
+                <td>
+                    <div class="form-check">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="bi bi-check-circle-fill status-icon {{ course.status }}" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                        </svg>
+                    </div>
+                </td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="{% if is_enrolled %}7{% else %}6{% endif %}" style="text-align: center;">Quiz Average : {{average}}%</td>
+            </tr>
+            <tr>
+                <td colspan="{% if is_enrolled %}7{% else %}6{% endif %}" style="text-align: center;">
+                    {% if is_enrolled %}
+                    <a href="{{ url_for('app_views_curriculum.course_content', program_id=current_program.id) }}" class="enroll-button" style="background-color: green; display: inline-block; padding: 10px 20px; text-decoration: none; color: white; border-radius: 5px;">Get Started</a>
+                    {% else %}
+                        <button class="enroll-button" onclick="toggleProgramButton(this)">Enroll Now</button>
+                    {% endif %}
+                </td>
+            </tr>
+        </tbody>
+    </table> 
+    
+</div>
+
+
+<script>
+function toggleProgramButton(button) {
+    button.textContent = 'Get Started';
+    button.disabled = true;
+
+    // Send enrollment confirmation to the backend
+    fetch('/curriculum', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            program_id: '{{ current_program.id }}'
+        })
+    })
+    .then(response => {
+        if (response.ok) {
+            console.log('Enrollment successful!');
+            button.style.backgroundColor = 'green';
+            location.reload()
+        } else {
+            console.error('Failed to enroll');
+            button.disabled = false;
+            button.textContent = 'Enroll Now';
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        button.disabled = false;
+        button.textContent = 'Enroll Now';
+    });
+}
+
+</script>
+</div>
+{% endblock %}

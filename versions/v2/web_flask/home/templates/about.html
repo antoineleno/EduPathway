@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}EduPATHWAY About{% endblock %}
+
+
+{% block content %}
+    <!-- Header Start -->
+    <div class="container-fluid page-header" style="margin-bottom: -80px;">
+        <div class="container">
+            <div class="d-flex flex-column justify-content-center" style="min-height: 300px">
+                <h3 class="display-4 text-white text-uppercase">About</h3>
+                <div class="d-inline-flex text-white">
+                    <p class="m-0 text-uppercase"><a class="text-white" href="{{ url_for('app_views_home.home') }}">Home</a></p>
+                    <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                    <p class="m-0 text-uppercase">About</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About Start -->
+    <div class="container-fluid py-5" id="about-us">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-5">
+                    <img class="img-fluid rounded mb-4 mb-lg-0" src="{{ url_for('.static', filename='img/quality_education.jpg') }}" alt="">
+                </div>
+                <div class="col-lg-7">
+                    <div class="text-left mb-4">
+                        <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">About Us</h5>
+                        <h1>Innovative Way To Learn</h1>
+                    </div>
+                    <p>We are committed to providing quality, free education to people around the world, breaking barriers and promoting equality. Our platform aims to support the Global SDGs by offering accessible learning resources to individuals regardless of their background. We believe education is a fundamental right that empowers individuals, drives social change, and creates opportunities. Our mission is to remove the obstacles to learning and create a global community where education is available to everyone, anywhere, anytime.</p>
+                    <a href="" class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+    <!-- Testimonial Start -->
+    <div class="container-fluid py-0">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">Our Objectives</h5>
+                <h1>Building a Global Learning Community</h1>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="owl-carousel testimonial-carousel">
+                        <div class="text-center">
+                            <i class="fa fa-3x fa-quote-left text-primary mb-4"></i>
+                            <h4 class="font-weight-normal mb-4">We provide universal access to quality education through digital platforms and resources, breaking down barriers worldwide.</h4>
+                        </div>
+                        <div class="text-center">
+                            <i class="fa fa-3x fa-quote-left text-primary mb-4"></i>
+                            <h4 class="font-weight-normal mb-4">We promote inclusivity by offering flexible learning opportunities and supporting diverse learning needs and backgrounds.</h4>
+                        </div>
+                        <div class="text-center">
+                            <i class="fa fa-3x fa-quote-left text-primary mb-4"></i>
+                            <h4 class="font-weight-normal mb-4">We foster a collaborative global community of educators, students, and professionals to exchange knowledge and drive positive change.</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Testimonial End -->
+{% endblock %}

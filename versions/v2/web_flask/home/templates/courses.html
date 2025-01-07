@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}EduPATHWAY Courses{% endblock %}
+
+{% block content %}
+    <!-- Courses Start -->
+    <!-- Header Start -->
+    <div class="container-fluid page-header" style="margin-bottom: -80px;">
+        <div class="container">
+            <div class="d-flex flex-column justify-content-center" style="min-height: 300px">
+                <h3 class="display-4 text-white text-uppercase">Courses</h3>
+                <div class="d-inline-flex text-white">
+                    <p class="m-0 text-uppercase"><a class="text-white" href="{{ url_for('app_views_home.home') }}">Home</a></p>
+                    <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                    <p class="m-0 text-uppercase">Courses</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid py-5" id="courses">
+        <div class="container pt-5 pb-3" class="d-flex justify-content-center">
+            <div class="text-center mb-5">
+                <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">Courses</h5>
+                <h1>Explore Our Courses</h1>
+            </div>
+            <form action="{{ url_for('app_views_home.courses') }}" method="POST" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 py-3" role="search">
+                <input type="search" name="query" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
+            </form>
+
+            <!-- This is the part that will show the top courses, we will use one div with jinja and then delete the rest inside the row div -->
+
+            <div class="row">
+                {% if courses_data %}
+                    {% for course in courses_data %}
+                        <div class="col-lg-3 col-md-6 mb-4">
+                            <div class="cat-item position-relative overflow-hidden rounded mb-2">
+                                <img class="img-fluid" src="{{ url_for('.static', filename='img/' + course.image) }}" alt="">
+                                <a class="cat-overlay text-white text-decoration-none" href="{{ url_for('app_views_curriculum.home', program_id=course.program_id) }}">
+                                    <h4 class="text-white font-weight-medium text-center">{{ course.name }}</h4>
+                                    <span class="text-center"> {{ course.program }}</span>
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="col-12 text-center py-5">
+                        <h4>No courses available at the moment.</h4>
+                        <p style="color: orange;">Check back later for new courses and programs!</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <!-- Category Start -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const searchForm = document.querySelector('form[role="search"]');
+            const coursesSection = document.getElementById("courses");
+    
+            searchForm.addEventListener("submit", function (event) {
+                event.preventDefault();
+                
+                const formData = new FormData(searchForm);
+    
+                fetch(searchForm.action, {
+                    method: "POST",
+                    body: formData
+                })
+                .then(response => response.text())
+                .then(html => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, "text/html");
+                    const newCourses = doc.getElementById("courses").innerHTML;
+                    
+                    coursesSection.innerHTML = newCourses;
+                    coursesSection.scrollIntoView({ behavior: "smooth" });
+                })
+                .catch(error => console.error("Error during search:", error));
+            });
+        });
+    </script>
+      
+{% endblock %}

@@ -1,0 +1,381 @@
+{% extends "base1.html" %}
+
+{% block title %}Admin Board{% endblock %}
+
+{% block content %}
+    <!-- Header Start -->
+    <div class="container-fluid page-header" style="margin-bottom: 0px;">
+        <div class="container">
+            <div class="d-flex flex-column justify-content-center" style="min-height: 300px">
+                <h3 class="display-4 text-white text-uppercase">Program Management</h3>
+                <div class="d-inline-flex text-white">
+                    <p class="m-0 text-uppercase"><a class="text-white" href="{{ url_for('app_views_home.home') }}">Home</a></p>
+                    <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                    <p class="m-0 text-uppercase"><a class="text-white" href="{{ url_for('app_views_auth.profile') }}">Profile</a></p>
+                    <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                    <p class="m-0 text-uppercase">Program Management</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Flash message -->
+    {% for message in get_flashed_messages(with_categories=true) %}
+    <div class="alert alert-dismissible fade show flash-message 
+        {% if message[0] == 'error' %} alert-danger {% else %} alert-success {% endif %}" 
+        role="alert" id="flashMessage"
+        style="max-width: 600px; margin: 10px auto; text-align: center; position: fixed; top: 120px; left: 50%; transform: translateX(-50%); z-index: 9999;">
+        <strong>{{ message[1] }}</strong>
+    </div>
+    {% endfor %}
+    {% block extra_styles %}
+    <style>
+            body {
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            color: #fff;
+            padding: 20px 40px;
+            text-align: center;
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+
+        .adminnav {
+            display: flex;
+            justify-content: center;
+            background-color: #3b3b3b;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .adminnav a {
+            color: white;
+            margin: 0 20px;
+            font-size: 16px;
+            text-decoration: none;
+            padding: 8px 16px;
+            transition: background-color 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .adminnav a:hover {
+            background-color: #575757;
+        }
+
+        .container {
+            padding: 30px;
+            margin-bottom: 0px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #444;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background-color: #f9f9f9;
+            transition: border 0.3s ease, background-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #3b9e6f;
+            background-color: #fff;
+        }
+
+        .adminbutton {
+            background-color: green;
+            color: white;
+            font-size: 16px;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin: 9px 9px;
+        }
+
+
+        .resource-list, .task-list, .course-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .resource-list li, .task-list li, .course-list li {
+            background: #f9f9f9;
+            margin: 10px 0;
+            padding: 15px;
+            border: 1px solid #e1e1e1;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .resource-list li span, .task-list li span, .course-list li span {
+            display: inline-flex;
+        }
+
+        .action-buttons button {
+            margin-left: 10px;
+            padding: 8px 16px;
+            font-size: 14px;
+            
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+
+
+        .question-block {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            background-color: #f0f4f7;
+        }
+
+        .options label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .options input,
+        .options select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        .edit {
+            background-color: green;
+        }
+
+        .delete {
+            background-color: red;
+        }
+    </style>
+{% endblock %}
+ 
+<nav class="adminnav">
+    <a href="#createProgram">Create Program</a>
+    <a href="#manageCourses">Manage Courses</a>
+    <a href="#manageResources">Manage Resources</a>
+    <a href="#manageProjects">Manage Projects</a>
+    <a href="#manageQuizzes">Manage Quizzes</a>
+</nav>
+<div class="container">
+    <div class="container" id="createProgram" >
+        <div class="container">
+            <section class="card">
+                <h2>Create Program</h2>
+                <form method="POST" action="{{ url_for('app_views_admin.home') }}" enctype="multipart/form-data">
+                    <input type="hidden" name="form_identifier" value="create_program_form">
+                    
+                    <div class="form-group">
+                        <label for="programName">Program Name</label>
+                        <input type="text" id="programName" name="programName" placeholder="Enter program name" required maxlength="45">
+                    </div>
+                    <div class="form-group">
+                        <label for="programDescription">Description</label>
+                        <textarea id="programDescription" name="programDescription" rows="4" placeholder="Enter program description" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="programImage">Upload program image</label>
+                        <input type="file" id="programImage" name="programImage" required>
+                    </div>
+                    <button class="adminbutton" type="submit">Create Program</button>
+                </form>        
+            </section>
+        </div>
+    </div>
+    <div class="container" id="manageCourses" >
+        <div class="container">
+            <section class="card">
+                <h2>Manage Course</h2>
+                <form method="POST" action="{{ url_for('app_views_admin.home') }}" enctype="multipart/form-data">
+                    <input type="hidden" name="form_identifier" value="create_course_form">
+                    
+                    <div class="form-group">
+                        <label for="courseName">Course Name</label>
+                        <input type="text" id="courseName" name="courseName" placeholder="Enter course name" required maxlength="45">
+                    </div>
+                    <div class="form-group">
+                        <label for="courseDescription">Description</label>
+                        <textarea id="courseDescription" name="courseDescription" rows="4" placeholder="Enter course description" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="parentProgram">Assign to Program</label>
+                        <select id="parentProgram" name="parentProgram" required>
+                            <option value="" disabled selected>Select Program</option>
+                            {% for program in programs %}
+                                <option value="{{ program }}">{{ program }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>  
+                    <div class="form-group">
+                        <label for="courseImage">Upload course image</label>
+                        <input type="file" id="courseImage" name="courseImage" required>
+                    </div>
+                    <button class="adminbutton" type="submit">Create Course</button>
+                </form>        
+            </section>
+        </div>
+
+    <div class="container" id="manageResources" >
+        <div class="container">
+            <section class="card">
+                <h2>Manage Resources</h2>
+                <form method="POST" action="{{ url_for('app_views_admin.home') }}">
+                    <input type="hidden" name="form_identifier" value="create_resource_form">
+            
+                    <div class="form-group">
+                        <input type="text" placeholder="Resource Title" name="title" required maxlength="45">
+                    </div>
+                    <div class="form-group">
+                        <label for="parentCourseProject">Assign to Course</label>
+                        <select id="parentCourseProject" name="parentCourse" required>
+                            <option value="" disabled selected>Select Course</option>
+                            {% for course in courses %}
+                                <option value="{{ course.name }}">{{ course.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Resource Content" rows="5" name="description" required></textarea>
+                    </div>
+                    <button class="adminbutton" type="submit">Upload Resource</button>
+                </form>
+            </section>
+        </div>
+    </div>
+
+    
+<div class="container" id="manageProjects">
+    <div class="container">
+        <section  class="card">
+            <h2>Manage Projects</h2>
+            <form method="POST" action="{{ url_for('app_views_admin.home') }}" id="projectForm">
+                <input type="hidden" name="form_identifier" value="create_project_form">
+                
+                <div class="form-group">
+                    <label for="parentCourseProject">Assign to Course</label>
+                    <select id="parentCourseProject" name="parentCourse" required>
+                        <option value="" disabled selected>Select Course</option>
+                        {% for course in courses %}
+                            <option value="{{ course.name }}">{{ course.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="projectName">Project Name</label>
+                    <input type="text" id="projectName" name="projectName" placeholder="Enter project name" required maxlength="45">
+                </div>
+                <div class="form-group">
+                    <label for="taskName">Task Name</label>
+                    <input type="text" id="taskName" name="taskName" placeholder="Enter task name" required maxlength="60">
+                </div>
+                <div class="form-group">
+                    <label for="taskDescription">Task Description</label>
+                    <textarea id="taskDescription" name="taskDescription" rows="2" placeholder="Enter task description" required></textarea>
+                </div>
+                <button class="adminbutton" type="submit">Add Project</button>
+            </form>
+        </section>
+    </div>
+</div>
+    
+<div class="container" id="manageQuizzes">
+    <div class="container">
+        <section class="card">
+            <h2>Manage Quizzes</h2>
+            <form method="POST" action="{{ url_for('app_views_admin.home') }}" id="quizForm">
+                <input type="hidden" name="form_identifier" value="create_quiz_form">
+                
+                <div class="form-group">
+                    <label for="quizName">Quiz Name</label>
+                    <input type="text" id="quizName" name="quizName" placeholder="Enter quiz name" required maxlength="45">
+                </div>
+                <div class="form-group">
+                    <label for="quizDuration">Quiz Duration <small class="text-muted">(in minutes)</small></label>
+                    <input type="number" id="quizName" name="duration" placeholder="Enter quiz duration" required min="1" step="1">
+                </div>                
+                <div class="form-group">
+                    <label for="parentCourseQuiz">Assign to Course</label>
+                    <select id="parentCourseProject" name="parentCourse" required>
+                        <option value="" disabled selected>Select Course</option>
+                        {% for course in courses %}
+                            <option value="{{ course.name }}">{{ course.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div id="questionsContainer">
+                    <div class="question-block form-group">
+                        <label for="questionText">Question</label>
+                        <textarea id="questionText" name="questions[]" rows="2" placeholder="Enter the question" required></textarea>
+                        
+                        <div class="options">
+                            <label for="option1">Option 1</label>
+                            <input type="text" name="options[0][]" placeholder="Enter option 1" required>
+                            
+                            <label for="option2">Option 2</label>
+                            <input type="text" name="options[0][]" placeholder="Enter option 2" required>
+                            
+                            <label for="option3">Option 3</label>
+                            <input type="text" name="options[0][]" placeholder="Enter option 3" required>
+                            
+                            <label for="option4">Option 4</label>
+                            <input type="text" name="options[0][]" placeholder="Enter option 4" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="answer">Correct Answer</label>
+                            <select name="answers[]" required>
+                                <option value="option1">Option 1</option>
+                                <option value="option2">Option 2</option>
+                                <option value="option3">Option 3</option>
+                                <option value="option4">Option 4</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button class="adminbutton" type="submit">Save Quiz</button>
+            </form>
+        </section>
+    </div>
+</div>
+
+</div>
+{% endblock %}
