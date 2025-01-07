@@ -1,38 +1,161 @@
-# Create User
-*  create User name="Antoine LENO" email="lenoantoine@gmail.com" password="lenoantoine" role="Admin" profile_image="user/static/img/antoineleno"
-# Create Program
-* create Program name="Data Science" description="This program will give me understanding of computer"
-# Create Enrollment
-* create Enrollment user_id="" program_id=""
-# Create Course
-* create Course name="Machine Learning" description="This is machine learning program" user_id="" program_id=""
-# Create Resource
-* create Resource title="Introduction" link="program/resources/intro.pdg" course_id=""
-# Create Project
-* create Project title="AirBnB" course_id=""
-# Create Task
-create Task title="Prime Game" instruction="This is task one" project_id=""
-# Create TaskAnswer
-create TaskAnswer task_id="" link="task/resources/one"
-# Create UserTask
-* create UserTask user_id="" task_id="" score=100
-# Create Quiz
-* create Quiz title="First quiz" question="First question" duration=1 course_id=""
-# create Answer
-* create Answer answer="ABCD3" quiz_id=""
-# create UserQuiz
-* create UserQuiz user_id="35159ca3-aac5-40da-9f6e-cdfa9a4e0725" quiz_id="8842c22e-0852-49dd-81d6-5f86b4fd9992" score=50
+<h1 align="center" style="background-color: white; color: orange; padding: 10px; border-radius: 5px; font-weight: bold; font-family: 'Arial', sans-serif;">
+  <img src="versions/v2/web_flask/home/static/img/favicon.png" 
+       alt="icon" 
+       style="width: 40px; height: 40px; border-radius: 50%; border: 2px dashed orange; padding: 5px; vertical-align: middle;"> 
+  <span style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">EduPathway</span> 
+</h1>
+<img alt="Data science" width="1200" src="versions/v2/web_flask/home/static/img/tableofcontents.png">
 
-# Update version
-* Open Nginx config file : sudo nano /etc/nginx/sites-available/default
-* Update line : set $backend blue
-* text nginx : sudo nginx -t
-* restart nginx : sudo systemctl restart nginx
-* visit localhost : http://localhost
+## 🔭 *1. Project Description*
+*Eduthpay 🎓 is a platform built with the mission to support SDG 4: Quality Education by offering 100% free and secure payment solutions for both students and educational institutions. The platform ensures that access to education is not limited by financial constraints. Whether it's making tuition payments, managing student records, or ensuring seamless transactions, Eduthpay eliminates all costs for users, making education truly accessible for everyone.*
 
-# Run all test cases
-* ECOURSE_ENV=test python3 -m unittest discover tests
-ENV="EDUPATHWAY_ENV" python3 -m unittest discover -v tests
+- ### *What Does RoofMarket Do?*
+*Provides 100% free payment solutions, ensuring that no one is excluded due to financial barriers. Offers a simple and secure way for students to make tuition payments, access payment histories, and receive receipts—all for free. Enables educational institutions to manage student payments and records efficiently without any costs involved. Supports a transparent, user-friendly experience, empowering both students and institutions with tools that foster seamless transactions and financial management.*
+- ### *Technologies used*
+<p align="center"> </a> <a href="https://www.linux.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="40" height="40"/> </a> <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a> <a href="https://www.mysql.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="40" height="40"/> </a> <a href="https://www.nginx.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nginx/nginx-original.svg" alt="nginx" width="40" height="40"/> </a> <a href="https://getbootstrap.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-plain-wordmark.svg" alt="bootstrap" width="40" height="40"/> </a> <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a> <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> </a>  </p>
 
-# Couse name Max : 40 words program 26 words
-# For program details : <!-- Program title with link href="{{ url_for('program_detail', program_id=course.id) }}"-->
+
+*We used Linux as the operating system for its stability, Python (Flask) for its simplicity in building scalable web applications, and MySQL for efficient data management. Nginx serves as the web server, while Bootstrap, HTML5, CSS3, and JavaScript enable a responsive, dynamic, and interactive front-end experience. Git helps with version control throughout development.*
+## 🛠️ *2. Installation Steps*
+
+*1. Clone the repository*
+
+```bash
+git clone https://github.com/antoineleno/alx_finale_porfolio.git
+```
+
+*2. Change the working directory*
+
+```bash
+cd alx_finale_porfolio
+``` 
+
+*3. Create a virtual environment*
+
+```bash
+python3 -m venv myenv
+```
+*4. Activate the virtual environment*
+
+```bash
+source myenv/bin/activate
+```
+
+*5. Install dependencies*
+
+```bash
+pip install -r requirements/requirements.txt
+```
+*6. Set up the database*
+```bash
+sudo mysql -u root -p < requirements/database_setup.sql
+```
+*7. Set up the trigger for subcription management*
+```bash
+sudo mysql -u root -p < requirements/subcription.sql
+```
+
+*8. Change the working directory and Run the app*
+
+```bash
+cd web_flask; python3 app.py
+```
+
+🌟 You are all set!
+
+
+## 📘  *How to use this project*
+*After completing the installation steps, an admin, supplier and client users will be created with the following credentials :*
+> - ***email***&nbsp;: *rmarketadmin@gmail.com*
+> - ***password*** : *roofmarketpassword*
+
+> - ***email***&nbsp;: *supplier@gmail.com*
+> - ***password*** : *supplierpassword*
+
+> - ***email***&nbsp;: *client@gmail.com*
+> - ***password*** : *clientpassword*
+
+## 👯 *3. Code Contributors*
+
+<p align="center">
+  <a href="https://github.com/antoineleno/final_porfolio/graphs/contributors">
+    <img src="versions/v2/web_flask/home/static/img/antoineleno.jpg" alt="Profile Picture" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-right: 20px;">
+    <img src="versions/v2/web_flask/home/static/img/antoineleno.jpg" alt="Profile Picture" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-right: 20px;">
+    <img src="versions/v2/web_flask/home/static/img/antoineleno.jpg" alt="Profile Picture" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-right: 20px;">
+    <img src="versions/v2/web_flask/home/static/img/antoineleno.jpg" alt="Profile Picture" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-right: 20px;">
+    <img src="versions/v2/web_flask/home/static/img/antoineleno.jpg" alt="Profile Picture" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-right: 20px;">
+  </a>
+</p>
+
+> ### 📫 *How to reach us*
+<p align="center">
+  <strong>Antoine LENO</strong> &nbsp;&nbsp;&nbsp;&nbsp; <strong>Amadou BAH</strong><br>
+  <a href="mailto:lenoantoine2000@gmail.com">
+      <img src="web_flask/auth/static/img/email.png" alt="Instagram" height="20" width="20" /></a>
+    <a href="https://github.com/antoineleno">
+      <img src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/github.svg" alt="Instagram" height="20" width="20" /></a>
+  <a href="https://instagram.com/antoineleno7" target="_blank">
+    <img src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="Instagram" height="20" width="20"/>
+  </a>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="mailto:bamadodu634@gmail.com">
+    <img src="web_flask/auth/static/img/email.png" alt="Instagram" height="20" width="20" /></a>
+    <a href="https://github.com/Amadou001">
+      <img src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/github.svg" alt="Instagram" height="20" width="20" /></a>
+  <a href="https://instagram.com/amadou4176" target="_blank">
+    <img src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="Instagram" height="20" width="20" />
+  </a>
+</p>
+
+## 🙇 *4. Special Thanks to*
+
+- [*ALX Software Engineering*](https://www.alxafrica.com/where-did-the-alx-software-engineering-programme-go/)  *for providing us with an incredible training experience.*
+- [*Mastercard Foundation*](https://mastercardfdn.org/)  *for generously funding this transformative training opportunity.*
+- [*Holberton Inc*](https://www.holbertonschool.com/)  *for their collaboration in powering this exceptional learning journey.*
+
+
+
+## 🚀 *5. Demo*
+
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=hPYDavftd8s&list=RDMM7b9z-YcDUrc&index=9" target="blank">
+    <img src="https://img.shields.io/website?url=https%3A%2F%2Fyour-video-link-here.com&logo=youtube&style=flat-square" alt="Demo Video" />
+  </a>
+</p>
+
+
+## 📜 *6. License*
+*Please refer to the included license file in the repository for detailed information.*
+
+## ✅ *7. Tests*
+*Run the following command from the root of the project directory to execute all tests and verify the software functionality :*
+```bash
+python3 -m unittest discover tests
+```
+
+## 🏅 *8. Badge*
+<p align="center">
+  <a href="https://github.com/antoineleno/alx_finale_porfolio/blob/main/LICENSE" target="blank">
+    <img src="https://img.shields.io/github/license/antoineleno/alx_finale_porfolio?style=flat-square" alt="alx_finale_porfolio license" />
+  </a>
+  <a href="https://github.com/antoineleno/alx_finale_porfolio/fork" target="blank">
+    <img src="https://img.shields.io/github/forks/antoineleno/alx_finale_porfolio?style=flat-square" alt="alx_finale_porfolio forks"/>
+  </a>
+  <a href="https://github.com/antoineleno/alx_finale_porfolio/stargazers" target="blank">
+    <img src="https://img.shields.io/github/stars/antoineleno/alx_finale_porfolio?style=flat-square" alt="alx_finale_porfolio stars"/>
+  </a>
+  <a href="https://github.com/antoineleno/alx_finale_porfolio/issues" target="blank">
+    <img src="https://img.shields.io/github/issues/antoineleno/alx_finale_porfolio?style=flat-square" alt="alx_finale_porfolio issues"/>
+  </a>
+  <a href="https://github.com/antoineleno/alx_finale_porfolio/pulls" target="blank">
+    <img src="https://img.shields.io/github/issues-pr/antoineleno/alx_finale_porfolio?style=flat-square" alt="alx_finale_porfolio pull-requests"/>
+  </a>
+  <!-- Example Contribution Badge -->
+  <a href="https://github.com/antoineleno/alx_finale_porfolio/graphs/contributors" target="blank">
+    <img src="https://img.shields.io/github/contributors/antoineleno/alx_finale_porfolio?style=flat-square" alt="alx_finale_porfolio contributors"/>
+  </a>
+</p>
+
+
+
+
