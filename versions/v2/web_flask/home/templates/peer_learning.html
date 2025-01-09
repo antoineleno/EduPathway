@@ -3,18 +3,10 @@
 {% block title %}EduPATHWAY Peer Learning {% endblock %}
 {% block style %}
 <style>
-    /* General Body Styling */
-    body {
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden; /* Prevent horizontal scrolling */
-        background: url('/mnt/data/design_concepts.png') no-repeat center center fixed;
-        background-size: cover;
-        font-family: 'Arial', sans-serif;
-    }
+
     
     /* Container Styling */
-    .container {
+    .containers {
         margin-left: 320px !important;
         margin-right: 100px !important;
         max-width: calc(100% - 420px) !important; /* Adjust container width */
@@ -191,7 +183,7 @@
         </form>
     </div>
     
-    <div class="container py-5">
+    <div class="containers py-5">
         <div class="row">
             <!-- Loop through room_information to generate room cards -->
             {% for room in room_information %}
