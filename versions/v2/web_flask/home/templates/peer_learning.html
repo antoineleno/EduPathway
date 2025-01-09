@@ -1,0 +1,257 @@
+{% extends "base.html" %}
+
+{% block title %}EduPATHWAY Peer Learning {% endblock %}
+{% block style %}
+<style>
+    /* General Body Styling */
+    body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden; /* Prevent horizontal scrolling */
+        background: url('/mnt/data/design_concepts.png') no-repeat center center fixed;
+        background-size: cover;
+        font-family: 'Arial', sans-serif;
+    }
+    
+    /* Container Styling */
+    .container {
+        margin-left: 320px !important;
+        margin-right: 100px !important;
+        max-width: calc(100% - 420px) !important; /* Adjust container width */
+    }
+    
+    /* Row Styling */
+    .row {
+        margin: 0 auto;
+    }
+    
+    /* Room Card Styling */
+    .room-card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        overflow: hidden;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        position: relative;
+    }
+    
+    .room-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    .room-card img {
+        width: 100%;
+        height: 155px;
+        object-fit: cover;
+    }
+    
+    /* Room Info Styling */
+    .room-info {
+        background-color: #2c5777; /* Blue color from the image */
+        padding: 10px;
+        text-align: center;
+        color: white !important;
+    }
+    
+    .room-info h4{
+        color: white !important;
+    }
+
+    .room-info h4 {
+        font-size: 14px;
+        margin: 5px 0;
+    }
+    
+    .room-info p {
+        font-size: 12px;
+    }
+    
+    /* Join Button Styling */
+    .join-btn {
+        margin-top: 15px;
+        width: auto;
+        border-radius: 50px; /* Oval shape */
+        font-size: 10px; /* Smaller size */
+        padding: 3px 50px; /* Reduced padding */
+        background-color: #ff6600 !important; /* Orange color */
+        color: white !important;
+        border: none;
+    }
+    
+    .join-btn:hover {
+        background-color: #e65c00; /* Darker orange on hover */
+    }
+    
+    /* Timing Styling - Positioned Top-Left */
+    .room-timing {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 5px 10px;
+        font-size: 12px;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+/* Side Menu Styling */
+.side-menu {
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 280px;
+    background-color: #2c5777; /* Blue background */
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+    
+    .side-menu h2,
+    .side-menu p {
+        color: white; /* Adjust text color for better visibility */
+    }
+    
+    .side-menu .btn-success {
+        background-color: #ff6600; /* Orange color for Create Room button */
+        border: none;
+    }
+    
+    .side-menu .btn-success:hover {
+        background-color: #e65c00; /* Darker orange on hover */
+    }
+
+    .custom-z-index {
+        z-index: 10000000;
+    }
+</style> 
+{% endblock %}
+
+{% block content %}
+    <!-- Header Start -->
+    <div class="container-fluid page-header" style="margin-bottom: 0;">
+        <div class="container">
+            <div class="d-flex flex-column justify-content-center" style="min-height: 300px">
+                <!-- Make the heading responsive with different font sizes at different breakpoints -->
+                <h3 class="display-4 text-white text-uppercase mb-4 mb-sm-2 mb-md-3 mb-lg-4">Peer Learning</h3>
+                
+                <!-- Adjust the breadcrumb for better layout and responsiveness -->
+                <div class="d-inline-flex flex-wrap text-white">
+                    <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
+                    <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                    <p class="m-0 text-uppercase">Peer Learning</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Flash message -->
+    {% for message in get_flashed_messages(with_categories=true) %}
+        <div class="alert alert-dismissible fade show flash-message 
+            {% if message[0] == 'error' %} alert-danger {% else %} alert-success {% endif %}" 
+            role="alert" id="flashMessage"
+            style="max-width: 600px; margin: 10px auto; text-align: center; position: fixed; top: 120px; left: 50%; transform: translateX(-50%); z-index: 9999;">
+            <strong>{{ message[1] }}</strong>
+        </div>
+    {% endfor %}
+
+
+    <div class="side-menu text-center">
+        <h2>Room Creation</h2>
+        <p>Not finding a suitable room? Create your own for peer learning.</p>
+    
+        <!-- Button to toggle the form visibility -->
+        <button class="btn btn-success mt-3" onclick="toggleCreateRoomForm()">Create a Room</button>
+    
+        <!-- Hidden form for creating a room -->
+        <form id="create-room-form" style="display: none;" class="mt-3" method="POST" action="{{ url_for('app_views_home.peer_learning') }}">
+            <input 
+                type="text" 
+                class="form-control mt-3" 
+                placeholder="Room Title" 
+                name="title" 
+                required maxlength="30">
+            <input 
+                type="number" 
+                class="form-control mt-3" 
+                placeholder="Duration (in minutes, e.g., 30)" 
+                name="duration" 
+                required 
+                min="1">
+            
+            <input 
+                type="url" 
+                class="form-control mt-3" 
+                placeholder="Google Meet Link" 
+                name="link" 
+                required>
+            <button type="submit" class="btn btn-primary mt-2">Submit</button>
+        </form>
+    </div>
+    
+    <div class="container py-5">
+        <div class="row">
+            <!-- Loop through room_information to generate room cards -->
+            {% for room in room_information %}
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="room-card">
+                    <img src="{{ url_for('.static', filename='img/PL/' + room.image_link) }}" alt="{{ room.name }}">
+                    <div class="room-timing">{{ room.duration }}</div>
+                    <div class="room-info">
+                        <h4>{{ room.name }}</h4>
+                        <a href="{{ room.link }}" class="btn join-btn" target="_blank" rel="noopener noreferrer">Join</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+        <script>
+            // Function to toggle the visibility of the "Create Room" form
+            function toggleCreateRoomForm() {
+                const form = document.getElementById('create-room-form');
+                form.style.display = form.style.display === 'none' ? 'block' : 'none';
+            }
+        
+            // Function to handle room creation logic
+            function createRoom() {
+                const roomTitle = document.getElementById('room-title').value;
+                const roomDuration = document.getElementById('room-duration').value;
+                const googleMeetLink = document.getElementById('google-meet-link').value;
+                
+                if (roomTitle && roomDuration && googleMeetLink) {
+                    // Create a new room card
+                    const roomCard = document.createElement('div');
+                    roomCard.classList.add('col-lg-4', 'col-md-6', 'col-sm-12');
+                    roomCard.innerHTML = `
+                        <div class="room-card">
+                            <img src="lenoantoine.jpg" alt="${roomTitle}">
+                            <div class="room-timing">Timing: ${roomDuration}</div> <!-- Added timing here -->
+                            <div class="room-info">
+                                <h4>${roomTitle}</h4>
+                                <a href="${googleMeetLink}" target="_blank" class="btn join-btn">Join</a>
+                            </div>
+                        </div>
+                    `;
+    
+                    // Append the new room card to the container
+                    document.querySelector('.container .row').appendChild(roomCard);
+    
+                    // Clear the form fields
+                    document.getElementById('room-title').value = '';
+                    document.getElementById('room-duration').value = '';
+                    document.getElementById('google-meet-link').value = '';
+                    
+                    // Hide the form
+                    toggleCreateRoomForm();
+                } else {
+                    alert("Please fill in all fields!");
+                }
+            }
+
+
+        </script>
+{% endblock %}

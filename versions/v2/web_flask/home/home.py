@@ -4,11 +4,12 @@ AUTH module
 """
 
 from flask import Blueprint, render_template
-from flask import request, render_template
+from flask import request, render_template, redirect, url_for, flash
 from models import storage
 from models.models import Course
 from models.models import Program, Room
 from home import app_views_home
+import random
 
 import re
 import os
@@ -31,7 +32,7 @@ def home():
                             'image': image,
                             'program_id': course.program.id, 
                             'program': course.program.name})
-    
+
     courses = []
     i = 0
     for course in all_programs:
@@ -51,7 +52,6 @@ def home():
     return render_template('index.html', courses_data=courses_data,
                            courses=courses,
                            current_page="home")
-
 
 @app_views_home.route("/about")
 def about():
@@ -117,17 +117,39 @@ def peer_learning():
         duration = request.form.get('duration')
         link = request.form.get('link')
         new_room = Room(title=title, duration=duration, link=link)
-        new_room.save()
-        return "Posting the page"
+        try:
+            new_room.save()
+            message = """Room created successfully"""
+            flash(message, "success")
+        except Exception as e:
+            message = """An unexpected error occured, Room not created"""
+            flash(message, "error")
+        return redirect(url_for('app_views_home.peer_learning'))
 
     all_rooms = storage.get_object(Room, all=True)
     room_informations = []
-    for room in all_rooms:
-        room_informations.append({'name': room.title,
-                                  'duration': room.duration,
-                                  'link': room.link})
-    return "Yes this is the peer learning board"
 
+    all_image = find_images("home/static/img/PL", "image")
+
+    for room in all_rooms:
+        random_number = random.randint(0, 9)
+        duration_in_minutes = int(room.duration)
+        hours = duration_in_minutes // 60
+        minutes = duration_in_minutes % 60
+        if hours > 0:
+            duration_string = f"{hours}h {minutes}min left" if minutes > 0 else f"{hours}h left"
+        else:
+            duration_string = f"{minutes}min left"
+
+        room_informations.append({
+            'name': room.title,
+            'image_link': all_image[random_number],
+            'duration': duration_string,
+            'link': room.link
+        })
+
+    return render_template('peer_learning.html',
+                           room_information=room_informations)
 
 def find_images(image_directory, start_with):
     """Find image"""

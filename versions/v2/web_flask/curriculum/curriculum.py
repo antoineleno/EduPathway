@@ -222,6 +222,7 @@ def course_content():
             return render_template('course_content.html',
             lessons=lessons, quiz_questions=quiz_questions,
             project_tasks=project_tasks,
+            current_page="programs",
             course=course, time_lit = time_limit * 60)
         return render_template('course_content.html')
     else:

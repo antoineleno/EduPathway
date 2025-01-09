@@ -67,7 +67,7 @@ cd web_flask; python3 app.py
 ## 📘  *How to use this project*
 *After completing the installation steps, an admin, supplier and client users will be created with the following credentials :*
 > - ***email***&nbsp;: *rmarketadmin@gmail.com*
-> - ***password*** : *roofmarketpassword*
+> - ***password*** : *edupathwaypassword*
 
 > - ***email***&nbsp;: *supplier@gmail.com*
 > - ***password*** : *supplierpassword*
