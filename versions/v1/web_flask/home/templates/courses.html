@@ -24,22 +24,58 @@
                 <h1>Explore Our Courses</h1>
             </div>
 
+
             <!-- This is the part that will show the top courses, we will use one div with jinja and then delete the rest inside the row div -->
 
             <div class="row">
-                {% for course in courses_data %}
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="cat-item position-relative overflow-hidden rounded mb-2">
-                            <img class="img-fluid" src="{{ url_for('.static', filename='img/' + course.image) }}" alt="">
-                            <a class="cat-overlay text-white text-decoration-none" href="{{ url_for('app_views_curriculum.home', program_id=course.program_id) }}">
-                                <h4 class="text-white font-weight-medium text-center">{{ course.name }}</h4>
-                                <span class="text-center"> {{ course.program }}</span>
-                            </a>
+                {% if courses_data %}
+                    {% for course in courses_data %}
+                        <div class="col-lg-3 col-md-6 mb-4">
+                            <div class="cat-item position-relative overflow-hidden rounded mb-2">
+                                <img class="img-fluid" src="{{ url_for('.static', filename='img/' + course.image) }}" alt="">
+                                <a class="cat-overlay text-white text-decoration-none" href="{{ url_for('app_views_curriculum.home', program_id=course.program_id) }}">
+                                    <h4 class="text-white font-weight-medium text-center">{{ course.name }}</h4>
+                                    <span class="text-center"> {{ course.program }}</span>
+                                </a>
+                            </div>
                         </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="col-12 text-center py-5">
+                        <h4>No courses available at the moment.</h4>
+                        <p style="color: orange;">Check back later for new courses and programs!</p>
                     </div>
-                {% endfor %}
+                {% endif %}
             </div>
         </div>
     </div>
     <!-- Category Start -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const searchForm = document.querySelector('form[role="search"]');
+            const coursesSection = document.getElementById("courses");
+    
+            searchForm.addEventListener("submit", function (event) {
+                event.preventDefault();
+                
+                const formData = new FormData(searchForm);
+    
+                fetch(searchForm.action, {
+                    method: "POST",
+                    body: formData
+                })
+                .then(response => response.text())
+                .then(html => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, "text/html");
+                    const newCourses = doc.getElementById("courses").innerHTML;
+                    
+                    coursesSection.innerHTML = newCourses;
+                    coursesSection.scrollIntoView({ behavior: "smooth" });
+                })
+                .catch(error => console.error("Error during search:", error));
+            });
+        });
+    </script>
+      
 {% endblock %}

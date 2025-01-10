@@ -11,8 +11,8 @@ from models.base_model import BaseModel
 from models.models import User, Program, Course
 from models.models import Project, Enrollment, Resource
 from models.models import Quiz, Option
-from models.models import  UserQuiz
-from models import storage
+from models.models import  UserQuiz, Room
+from sqlalchemy import inspect
 from unittest.mock import MagicMock
 
 
@@ -90,11 +90,15 @@ class TestModels(unittest.TestCase):
                     password="lenoantoine",
                     role="student",
                     profile_image="image.png")
-        program1 = Program(name="SSA", description="BCS", rating=10, program_picture="iamge")
-        program2 = Program(name="SSB", description="BCS", rating=5,
+        program1 = Program(name="SSA", description="BCS",
+                           rating=10, program_picture="iamge")
+        program2 = Program(name="SSB", description="BCS",
+                           rating=5,
                            program_picture="iamge")
-        enrollment1 = Enrollment(user_id=user.id, program_id=program1.id, proress=100)
-        enrollment2 = Enrollment(user_id=user.id, program_id=program2.id, progress=100)
+        enrollment1 = Enrollment(user_id=user.id,
+                                 program_id=program1.id, proress=100)
+        enrollment2 = Enrollment(user_id=user.id,
+                                 program_id=program2.id, progress=100)
 
 
     def test_create_course(self):
@@ -104,7 +108,8 @@ class TestModels(unittest.TestCase):
         program = MagicMock()
         program.id = "program123"
 
-        course = Course(name="Course 1", description="Course Description", user_id=user.id, program_id=program.id)
+        course = Course(name="Course 1", description="Course Description",
+                        user_id=user.id, program_id=program.id)
         
         course.id = "course123"
 
@@ -117,7 +122,9 @@ class TestModels(unittest.TestCase):
         course = MagicMock()
         course.id = "course123"
         
-        resource = Resource(title="Resource 1", description="Resource Description", course_id=course.id)
+        resource = Resource(title="Resource 1",
+                            description="Resource Description",
+                            course_id=course.id)
         resource.id = "resource123"
         
         self.assertIsNotNone(resource.id)
@@ -129,7 +136,9 @@ class TestModels(unittest.TestCase):
         course = MagicMock()
         course.name = "Course 1"
         
-        resource = Resource(title="Resource 2", description="Another Resource Description", course_id=course.id)
+        resource = Resource(title="Resource 2",
+                            description="Another Resource Description",
+                            course_id=course.id)
         resource.course = course
         
         self.assertEqual(resource.course.name, "Course 1")
@@ -139,7 +148,9 @@ class TestModels(unittest.TestCase):
         course = MagicMock()
         course.id = "course123"
         
-        project = Project(title="Project 1", task_name="Task 1", description="Project Description", course_id=course.id)
+        project = Project(title="Project 1", task_name="Task 1",
+                          description="Project Description",
+                          course_id=course.id)
         project.id = "project123"
         
         self.assertIsNotNone(project.id)
@@ -152,7 +163,9 @@ class TestModels(unittest.TestCase):
         course = MagicMock()
         course.name = "Course 1"
         
-        project = Project(title="Project 2", task_name="Task 2", description="Another Project Description", course_id=course.id)
+        project = Project(title="Project 2", task_name="Task 2",
+                          description="Another Project Description",
+                          course_id=course.id)
         project.course = course
         
         self.assertEqual(project.course.name, "Course 1")
@@ -162,7 +175,10 @@ class TestModels(unittest.TestCase):
         course = MagicMock()
         course.id = "course123"
         
-        quiz = Quiz(title="Quiz 1", question="What is 2 + 2?", answer="4", duration=30, course_id=course.id)
+        quiz = Quiz(title="Quiz 1", question="What is 2 + 2?",
+                    answer="4",
+                    duration=30,
+                    course_id=course.id)
         quiz.id = "quiz123"
         
         self.assertIsNotNone(quiz.id)
@@ -176,7 +192,9 @@ class TestModels(unittest.TestCase):
         course = MagicMock()
         course.name = "Course 1"
         
-        quiz = Quiz(title="Quiz 2", question="What is 3 + 3?", answer="6", duration=45, course_id=course.id)
+        quiz = Quiz(title="Quiz 2", question="What is 3 + 3?", answer="6",
+                    duration=45,
+                    course_id=course.id)
         quiz.course = course
         
         self.assertEqual(quiz.course.name, "Course 1")
@@ -231,3 +249,39 @@ class TestModels(unittest.TestCase):
         self.assertEqual(user_quiz.user.id, "user123")
         self.assertEqual(user_quiz.course.id, "course123")
         self.assertEqual(user_quiz.score, 90)
+
+
+    def test_table_name(self):
+        """Test if the table name is set correctly."""
+        self.assertEqual(Room.__tablename__, "room")
+
+    def test_title_column(self):
+        """Test if the title column is defined correctly."""
+        self.assertEqual(Room.__table__.c.title.type.length, 250)
+        self.assertFalse(Room.__table__.c.title.nullable)
+
+    def test_columns(self):
+        """Test if the columns are defined correctly."""
+        inspector = inspect(Room)
+        columns = {column.name for column in inspector.columns}
+        expected_columns = {"id", "title", "duration", "link", "created_at", "updated_at"}
+        self.assertEqual(columns, expected_columns)
+
+    def test_duration_column(self):
+        """Test if the duration column is defined correctly."""
+        self.assertEqual(Room.__table__.c.duration.type.__class__.__name__, "Integer")
+        self.assertFalse(Room.__table__.c.duration.nullable)
+
+    def test_link_column(self):
+        """Test if the link column is defined correctly."""
+        self.assertEqual(Room.__table__.c.link.type.__class__.__name__, "Text")
+        self.assertFalse(Room.__table__.c.link.nullable)
+
+    def test_instance_creation(self):
+        """Test if an instance of Room can be created with valid data."""
+        room = Room(title="Test Room", duration=60, link="http://example.com")
+        self.assertEqual(room.title, "Test Room")
+        self.assertEqual(room.duration, 60)
+        self.assertEqual(room.link, "http://example.com")
+
+

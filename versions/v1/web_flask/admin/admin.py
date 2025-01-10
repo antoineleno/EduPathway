@@ -141,7 +141,7 @@ def home():
                     duration = request.form.get('duration')
                     parentCourse = request.form.get('parentCourse')
                     question = questions[0]
-                    answer = options[int(answers[0][-1])]
+                    answer = options[int(answers[0][-1]) - 1]
                     try:
                         course = storage.get_object(Course, name=parentCourse)
                         new_quiz = Quiz(title=quiz_name, question=question,

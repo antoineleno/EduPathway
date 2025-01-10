@@ -3,7 +3,7 @@
 AUTH module
 """
 
-from flask import Blueprint, render_template, session
+from flask import Blueprint, render_template
 from flask import redirect, url_for, flash, request, jsonify
 from models import storage
 from models.models import User, Enrollment

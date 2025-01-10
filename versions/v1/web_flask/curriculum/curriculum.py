@@ -218,9 +218,11 @@ def course_content():
                 time_limit += quiz.duration
                 quiz_questions.append({"id": quiz.id, "question": quiz.question,
                                     "options": [option.option for option in all_options]})
+
             return render_template('course_content.html',
             lessons=lessons, quiz_questions=quiz_questions,
             project_tasks=project_tasks,
+            current_page="programs",
             course=course, time_lit = time_limit * 60)
         return render_template('course_content.html')
     else:

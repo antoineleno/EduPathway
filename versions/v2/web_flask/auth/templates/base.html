@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <title>{%block title %} {% endblock %}</title>
@@ -103,7 +102,7 @@
                             <a href="{{ url_for('app_views_home.courses') }}" class="nav-item nav-link {% if current_page == 'courses' %}active{% endif %} mr-5">Courses</a>
                             {% if user.is_authenticated %}
                             <a href="{{ url_for('app_views_auth.profile') }}" class="nav-item nav-link {% if current_page == 'dashboard' %}active{% endif %} mr-5">Dashboard</a>
-                            <a href="{{ url_for('app_views_home.peer_learning') }}" class="nav-item nav-link {% if current_page == 'dashboard' %}active{% endif %} mr-5">PL</a>
+                            <a href="{{ url_for('app_views_home.peer_learning') }}" class="nav-item nav-link {% if current_page == 'PL' %}active{% endif %} mr-5">PL</a>
                             {% endif %}                         
                         </div>
                         {% if user.is_authenticated %}
@@ -193,7 +192,7 @@
                     <div class="col-md-6 mb-4">
                         <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 3px;">Quick Links</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Home</a>
+                            <a class="text-white mb-2" href="{{ url_for('app_views_home.home') }}"><i class="fa fa-angle-right mr-2"></i>Home</a>
                             <a class="text-white mb-2" href="{{ url_for('app_views_home.about') }}"><i class="fa fa-angle-right mr-2"></i>About</a>
                             <a class="text-white mb-2" href="{{ url_for('app_views_home.programs') }}"><i class="fa fa-angle-right mr-2"></i>Programs</a>
                             <a class="text-white mb-2" href="{{ url_for('app_views_auth.profile') }}"><i class="fa fa-angle-right mr-2"></i>Profile</a>

@@ -125,7 +125,8 @@ class Option(BaseModel, Base):
     """Mapping class for options"""
     __tablename__ = "option"
     option = Column(Text, nullable=False)
-    quiz_id = Column(String(60), ForeignKey('quiz.id', ondelete="CASCADE"), nullable=False)
+    quiz_id = Column(String(60), ForeignKey('quiz.id', ondelete="CASCADE"),
+                     nullable=False)
     quiz = relationship("Quiz", back_populates="options")
 
 class UserQuiz(BaseModel, Base):

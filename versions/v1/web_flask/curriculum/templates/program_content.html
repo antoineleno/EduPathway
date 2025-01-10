@@ -185,12 +185,13 @@
                     </ul>
                 </td>
                 
-
+                {% if is_enrolled %}
                 <td>
                 {% for result in course.quiz_result %}
                     {{ result }}%
                 {% endfor %}
                 </td>
+                {% endif %}
 
                 {% if is_enrolled %}
                 <td>

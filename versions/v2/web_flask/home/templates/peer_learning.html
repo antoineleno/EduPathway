@@ -3,7 +3,6 @@
 {% block title %}EduPATHWAY Peer Learning {% endblock %}
 {% block style %}
 <style>
-
     
     /* Container Styling */
     .containers {
@@ -15,6 +14,11 @@
     /* Row Styling */
     .row {
         margin: 0 auto;
+    }
+
+    .row.room {
+        margin: 0 auto;
+        min-height: 250px;
     }
     
     /* Room Card Styling */
@@ -90,9 +94,9 @@
 
 /* Side Menu Styling */
 .side-menu {
-    position: fixed;
+    position: absolute;
     left: 20px;
-    top: 50%;
+    top: 650px;
     transform: translateY(-50%);
     width: 280px;
     background-color: #2c5777; /* Blue background */
@@ -184,21 +188,37 @@
     </div>
     
     <div class="containers py-5">
-        <div class="row">
-            <!-- Loop through room_information to generate room cards -->
-            {% for room in room_information %}
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="room-card">
-                    <img src="{{ url_for('.static', filename='img/PL/' + room.image_link) }}" alt="{{ room.name }}">
-                    <div class="room-timing">{{ room.duration }}</div>
-                    <div class="room-info">
-                        <h4>{{ room.name }}</h4>
-                        <a href="{{ room.link }}" class="btn join-btn" target="_blank" rel="noopener noreferrer">Join</a>
+        <div class="row room">
+            <!-- Check if room_information is empty -->
+            {% if room_information %}
+                <!-- Loop through room_information to generate room cards -->
+                {% for room in room_information %}
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="room-card">
+                        <img src="{{ url_for('.static', filename='img/PL/' + room.image_link) }}" alt="{{ room.name }}">
+                        <div class="room-timing">{{ room.duration }}</div>
+                        <div class="room-info">
+                            <h4>{{ room.name }}</h4>
+                            <a href="{{ room.link }}" class="btn join-btn" target="_blank" rel="noopener noreferrer">Join</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            {% endfor %}
+                {% endfor %}
+            {% else %}
+                <!-- Message to display when no rooms are available -->
+                <div class="col-12">
+                    <div class="col-12">
+                        <br>
+                        <br>
+                        <br>
+                        <h5 class="text-center" style="color: orange;">No available rooms at the moment. Please check back later</h5>
+                        <h5 class="text-center" style="color: orange;">Or</h5>
+                        <h5 class="text-center" style="color: orange;">Open a new converstation room.</h5>
+                    </div>                    
+                </div>
+            {% endif %}
         </div>
+        
     </div>
     
         <script>

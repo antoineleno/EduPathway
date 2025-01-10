@@ -103,6 +103,7 @@
                             <a href="{{ url_for('app_views_home.courses') }}" class="nav-item nav-link {% if current_page == 'courses' %}active{% endif %} mr-5">Courses</a>
                             {% if user.is_authenticated %}
                             <a href="{{ url_for('app_views_auth.profile') }}" class="nav-item nav-link {% if current_page == 'dashboard' %}active{% endif %} mr-5">Dashboard</a>
+                            <a href="{{ url_for('app_views_home.peer_learning') }}" class="nav-item nav-link {% if current_page == 'PL' %}active{% endif %} mr-5">PL</a>
                             {% endif %}                         
                         </div>
                         {% if user.is_authenticated %}
@@ -172,12 +173,6 @@
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
-
-
-
-
-
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>

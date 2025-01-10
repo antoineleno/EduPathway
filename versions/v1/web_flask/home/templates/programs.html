@@ -19,32 +19,73 @@
     </div>
     <div class="container-fluid py-5" id="programs">
         <div class="container py-5">
-            <div class="text-center mb-5">
+            <div class="text-center mb-3">
                 <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">Programs</h5>
                 <h1>Explore Our Programs</h1>
             </div>
+            
             <div class="row">
-                {% for program in all_programs %}
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="rounded overflow-hidden mb-2">
-                        <img class="img-fluid" src="{{ url_for('.static', filename='img/' + program.image) }}" alt="">
-                        <div class="bg-secondary p-4">
-                            <div class="d-flex justify-content-between mb-3">
-                                <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>{{ program.students }} Students</small>
-                                <small class="m-0"><i class="fas fa-book text-primary mr-2"></i>{{ program.total_courses }} Courses</small>
-                            </div>
-                            <a class="h5" href="{{ url_for('app_views_curriculum.home', program_id=program.id) }}">{{ program.title }}</a>
-                            <div class="border-top mt-4 pt-4">
-                                <div class="d-flex justify-content-between">
-                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>{{ program.rating }}</h6>
-                                    <h5 class="m-0">Free</h5>
+                {% if all_programs %}
+                    {% for program in all_programs %}
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="rounded overflow-hidden mb-2">
+                            <img class="img-fluid" src="{{ url_for('.static', filename='img/' + program.image) }}" alt="">
+                            <div class="bg-secondary p-4">
+                                <div class="d-flex justify-content-between mb-3">
+                                    <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>{{ program.students }} Students</small>
+                                    <small class="m-0"><i class="fas fa-book text-primary mr-2"></i>{{ program.total_courses }} Courses</small>
+                                </div>
+                                <a class="h5" href="{{ url_for('app_views_curriculum.home', program_id=program.id) }}">{{ program.title }}</a>
+                                <div class="border-top mt-4 pt-4">
+                                    <div class="d-flex justify-content-between">
+                                        <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>{{ program.rating }}</h6>
+                                        <h5 class="m-0">Free</h5>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                {% endfor %}
-            </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="col-12 text-center py-5">
+                        <h4>No programs available at the moment.</h4>
+                        <p style="color: orange;">Check back later for new courses and programs!</p>
+                    </div>
+                {% endif %}
+            </div>            
         </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Attach an event listener to the search form
+            const searchForm = document.querySelector('form[role="search"]');
+    
+            searchForm.addEventListener('submit', function (event) {
+                event.preventDefault();  // Prevent the default form submission
+    
+                // Perform the form submission using Fetch API
+                const formData = new FormData(searchForm);
+    
+                fetch(searchForm.action, {
+                    method: searchForm.method,
+                    body: formData
+                })
+                .then(response => response.text())
+                .then(html => {
+                    // Replace the current page content with the response
+                    document.body.innerHTML = html;
+    
+                    // Scroll to the program section
+                    const programSection = document.getElementById("programs");
+                    if (programSection) {
+                        programSection.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error during search:', error);
+                });
+            });
+        });
+    </script>
+    
 {% endblock %}

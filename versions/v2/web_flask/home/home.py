@@ -149,7 +149,8 @@ def peer_learning():
         })
 
     return render_template('peer_learning.html',
-                           room_information=room_informations)
+                           room_information=room_informations,
+                           current_page="PL")
 
 def find_images(image_directory, start_with):
     """Find image"""

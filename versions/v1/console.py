@@ -2,8 +2,6 @@
 """
 console module
 """
-from os import getenv
-import importlib
 import cmd
 import sys
 import shlex
@@ -89,18 +87,6 @@ class EduPahtwayommand(cmd.Cmd):
 
     def do_all(self, args):  
         print(storage.get_object(User))
-
-    def do_get(self, args):
-        """Get an object"""
-        if args:
-            arguments = shlex.split(args)
-            if len(arguments) == 2:
-                user = storage.get_object(User, id="9566ffb2-1df8-496f-8f13-972bdf2f60ab")
-                print(user)
-                user.delete()
-                storage.save()
-                
-
 
 if __name__ == '__main__':
     EduPahtwayommand().cmdloop()
