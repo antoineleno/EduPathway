@@ -17,7 +17,8 @@
 
 *We used Linux as the operating system for its stability, Python (Flask) for its simplicity in building scalable web applications, and MySQL for efficient data management. Nginx serves as the web server, while Bootstrap, HTML5, CSS3, and JavaScript enable a responsive, dynamic, and interactive front-end experience. Git helps with version control throughout development.*
 ## 🛠️ *2. Installation Steps*
-* ⚠️ Make sure to have the above technologies installed before starting the installation steps otherwise it won't work!*
+*⚠️ Make sure to have the above technologies installed before starting the installation steps otherwise it won't work!*
+
 *1. Clone the repository*
 
 ```bash
