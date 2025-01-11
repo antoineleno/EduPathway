@@ -130,7 +130,7 @@ cd web_flask; python3 app.py
   <a href="https://instagram.com/antoineleno7" target="_blank">
     <img src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="Instagram" height="20" width="20"/>
   </a>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="mailto:bamadodu634@gmail.com">
     <img src="versions/v2/web_flask/home/static/img/email.png" alt="Instagram" height="20" width="20" />
   </a>
