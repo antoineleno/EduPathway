@@ -81,7 +81,7 @@ cd web_flask; python3 app.py
 <p align="center">
   <a href="https://github.com/antoineleno/final_porfolio/graphs/contributors">
     <img src="versions/v2/web_flask/home/static/img/antoineleno.png" alt="Profile Picture" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-right: 20px;">
-    <img src="versions/v2/web_flask/home/static/img/antoineleno.png" alt="Profile Picture" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-right: 20px;">
+    <img src="versions/v2/web_flask/home/static/img/nouhandoubouya.png" alt="Profile Picture" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-right: 20px;">
     <img src="versions/v2/web_flask/home/static/img/antoineleno.png" alt="Profile Picture" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-right: 20px;">
     <img src="versions/v2/web_flask/home/static/img/antoineleno.png" alt="Profile Picture" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-right: 20px;">
     <img src="versions/v2/web_flask/home/static/img/antoineleno.png" alt="Profile Picture" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-right: 20px;">
