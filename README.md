@@ -163,23 +163,20 @@ cd; cd EduPathway/versions/v2; python -m unittest discover -v tests
 
 ## 🏅 *5. Badge*
 <p align="center">
-  <a href="https://github.com/antoineleno/alx_finale_porfolio/blob/main/LICENSE" target="blank">
-    <img src="https://img.shields.io/github/license/antoineleno/alx_finale_porfolio?style=flat-square" alt="alx_finale_porfolio license" />
+  <a href="https://github.com/antoineleno/EduPathway/fork" target="blank">
+    <img src="https://img.shields.io/github/forks/antoineleno/EduPathway?style=flat-square" alt="aEduPathway forks"/>
   </a>
-  <a href="https://github.com/antoineleno/alx_finale_porfolio/fork" target="blank">
-    <img src="https://img.shields.io/github/forks/antoineleno/alx_finale_porfolio?style=flat-square" alt="alx_finale_porfolio forks"/>
+  <a href="https://github.com/antoineleno/EduPathway/stargazers" target="blank">
+    <img src="https://img.shields.io/github/stars/antoineleno/EduPathway?style=flat-square" alt="EduPathway stars"/>
   </a>
-  <a href="https://github.com/antoineleno/alx_finale_porfolio/stargazers" target="blank">
-    <img src="https://img.shields.io/github/stars/antoineleno/alx_finale_porfolio?style=flat-square" alt="alx_finale_porfolio stars"/>
+  <a href="https://github.com/antoineleno/EduPathway/issues" target="blank">
+    <img src="https://img.shields.io/github/issues/antoineleno/EduPathway?style=flat-square" alt="EduPathway issues"/>
   </a>
-  <a href="https://github.com/antoineleno/alx_finale_porfolio/issues" target="blank">
-    <img src="https://img.shields.io/github/issues/antoineleno/alx_finale_porfolio?style=flat-square" alt="alx_finale_porfolio issues"/>
-  </a>
-  <a href="https://github.com/antoineleno/alx_finale_porfolio/pulls" target="blank">
-    <img src="https://img.shields.io/github/issues-pr/antoineleno/alx_finale_porfolio?style=flat-square" alt="alx_finale_porfolio pull-requests"/>
+  <a href="https://github.com/antoineleno/EduPathway/pulls" target="blank">
+    <img src="https://img.shields.io/github/issues-pr/antoineleno/EduPathway?style=flat-square" alt="EduPathway pull-requests"/>
   </a>
   <!-- Example Contribution Badge -->
-  <a href="https://github.com/antoineleno/alx_finale_porfolio/graphs/contributors" target="blank">
-    <img src="https://img.shields.io/github/contributors/antoineleno/alx_finale_porfolio?style=flat-square" alt="alx_finale_porfolio contributors"/>
+  <a href="https://github.com/antoineleno/EduPathway/graphs/contributors" target="blank">
+    <img src="https://img.shields.io/github/contributors/antoineleno/EduPathway?style=flat-square" alt="EduPathway contributors"/>
   </a>
 </p>
