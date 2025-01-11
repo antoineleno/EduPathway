@@ -7,10 +7,10 @@
 <img alt="Data science" width="1200" src="versions/v2/web_flask/home/static/img/tableofcontents.png">
 
 ## 🔭 *1. Project Description*
-*Eduthpay 🎓 is a platform built with the mission to support SDG 4: Quality Education by offering 100% free and secure payment solutions for both students and educational institutions. The platform ensures that access to education is not limited by financial constraints. Whether it's making tuition payments, managing student records, or ensuring seamless transactions, Eduthpay eliminates all costs for users, making education truly accessible for everyone.*
+*Edupathway 🎓 is a platform dedicated to supporting SDG 4: Quality Education by providing 100% free, secure, and accessible solutions for students and educational institutions. Our mission is to break financial barriers and ensure that education is truly accessible to everyone. From tuition payments to managing student records and facilitating seamless transactions, Eduthpay eliminates all costs for users, creating a world where education is a right, not a privilege.*
 
-- ### *What Does RoofMarket Do?*
-*Provides 100% free payment solutions, ensuring that no one is excluded due to financial barriers. Offers a simple and secure way for students to make tuition payments, access payment histories, and receive receipts—all for free. Enables educational institutions to manage student payments and records efficiently without any costs involved. Supports a transparent, user-friendly experience, empowering both students and institutions with tools that foster seamless transactions and financial management.*
+- ### *What Does Edupathway Do?*
+*Provides completely free payment solutions to ensure that financial barriers never hinder access to education. Offers a simple and secure way for students to make tuition payments, view payment histories, and receive receipts—all at no cost. Enables educational institutions to efficiently manage student payments and records without any charges. Promotes transparency and ease of use, empowering students and institutions with tools for seamless transactions and effective financial management.*
 - ### *Technologies used*
 <p align="center"> </a> <a href="https://www.linux.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="40" height="40"/> </a> <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a> <a href="https://www.mysql.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="40" height="40"/> </a> <a href="https://www.nginx.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nginx/nginx-original.svg" alt="nginx" width="40" height="40"/> </a> <a href="https://getbootstrap.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-plain-wordmark.svg" alt="bootstrap" width="40" height="40"/> </a> <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a> <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> </a>  </p>
 
@@ -80,11 +80,11 @@ cd web_flask; python3 app.py
 
 <p align="center">
   <a href="https://github.com/antoineleno/final_porfolio/graphs/contributors">
-    <img src="versions/v2/web_flask/home/static/img/antoineleno.png" alt="Profile Picture" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-right: 20px;">
-    <img src="versions/v2/web_flask/home/static/img/nouhandoubouya.png" alt="Profile Picture" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-right: 20px;">
-    <img src="versions/v2/web_flask/home/static/img/antoineleno.png" alt="Profile Picture" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-right: 20px;">
-    <img src="versions/v2/web_flask/home/static/img/antoineleno.png" alt="Profile Picture" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-right: 20px;">
-    <img src="versions/v2/web_flask/home/static/img/antoineleno.png" alt="Profile Picture" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-right: 20px;">
+    <img src="versions/v2/web_flask/home/static/img/antoineleno.png" alt="Profile Picture" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-right: 20px;">
+    <img src="versions/v2/web_flask/home/static/img/nouhandoubouya.png" alt="Profile Picture" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-right: 20px;">
+    <img src="versions/v2/web_flask/home/static/img/antoineleno.png" alt="Profile Picture" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-right: 20px;">
+    <img src="versions/v2/web_flask/home/static/img/antoineleno.png" alt="Profile Picture" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-right: 20px;">
+    <img src="versions/v2/web_flask/home/static/img/antoineleno.png" alt="Profile Picture" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-right: 20px;">
   </a>
 </p>
 
@@ -92,17 +92,51 @@ cd web_flask; python3 app.py
 <p align="center">
   <strong>Antoine LENO</strong> &nbsp;&nbsp;&nbsp;&nbsp; <strong>Nouhan DOUMBOUYA</strong> &nbsp;&nbsp;&nbsp;&nbsp; <strong>Alisena DANISHWER</strong> &nbsp;&nbsp;&nbsp;&nbsp; <strong>Maria IQBAL</strong> &nbsp;&nbsp;&nbsp;&nbsp; <strong>MD Rashidul ISLAM</strong><br>
   <a href="mailto:lenoantoine2000@gmail.com">
-      <img src="web_flask/auth/static/img/email.png" alt="Instagram" height="20" width="20" /></a>
-    <a href="https://github.com/antoineleno">
-      <img src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/github.svg" alt="Instagram" height="20" width="20" /></a>
+      <img src="versions/v2/web_flask/home/static/img/email.png" alt="Instagram" height="20" width="20" />
+  </a>
+  <a href="https://github.com/antoineleno">
+      <img src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/github.svg" alt="Instagram" height="20" width="20" />
+  </a>
+  <a href="https://instagram.com/antoineleno7" target="_blank">
+    <img src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="Instagram" height="20" width="20"/>
+  </a>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="mailto:lenoantoine2000@gmail.com">
+      <img src="versions/v2/web_flask/home/static/img/email.png" alt="Instagram" height="20" width="20" />
+  </a>
+  <a href="https://github.com/antoineleno">
+      <img src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/github.svg" alt="Instagram" height="20" width="20" />
+  </a>
+  <a href="https://instagram.com/antoineleno7" target="_blank">
+    <img src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="Instagram" height="20" width="20"/>
+  </a>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="mailto:lenoantoine2000@gmail.com">
+      <img src="versions/v2/web_flask/home/static/img/email.png" alt="Instagram" height="20" width="20" />
+  </a>
+  <a href="https://github.com/antoineleno">
+      <img src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/github.svg" alt="Instagram" height="20" width="20" />
+  </a>
+  <a href="https://instagram.com/antoineleno7" target="_blank">
+    <img src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="Instagram" height="20" width="20"/>
+  </a>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="mailto:lenoantoine2000@gmail.com">
+      <img src="versions/v2/web_flask/home/static/img/email.png" alt="Instagram" height="20" width="20" />
+  </a>
+  <a href="https://github.com/antoineleno">
+      <img src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/github.svg" alt="Instagram" height="20" width="20" />
+  </a>
   <a href="https://instagram.com/antoineleno7" target="_blank">
     <img src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="Instagram" height="20" width="20"/>
   </a>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="mailto:bamadodu634@gmail.com">
-    <img src="web_flask/auth/static/img/email.png" alt="Instagram" height="20" width="20" /></a>
-    <a href="https://github.com/Amadou001">
-      <img src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/github.svg" alt="Instagram" height="20" width="20" /></a>
+    <img src="versions/v2/web_flask/home/static/img/email.png" alt="Instagram" height="20" width="20" />
+  </a>
+  <a href="https://github.com/Amadou001">
+      <img src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/github.svg" alt="Instagram" height="20" width="20" />
+  </a>
   <a href="https://instagram.com/amadou4176" target="_blank">
     <img src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="Instagram" height="20" width="20" />
   </a>
