@@ -204,9 +204,11 @@
                 {% endif %}
             </tr>
             {% endfor %}
+            {% if is_enrolled %}
             <tr>
                 <td colspan="{% if is_enrolled %}7{% else %}6{% endif %}" style="text-align: center;">Quiz Average : {{average}}%</td>
             </tr>
+            {% endif %}
             <tr>
                 <td colspan="{% if is_enrolled %}7{% else %}6{% endif %}" style="text-align: center;">
                     {% if is_enrolled %}

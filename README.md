@@ -22,13 +22,13 @@
 *1. Clone the repository*
 
 ```bash
-git clone https://github.com/antoineleno/alx_finale_porfolio.git
+git clone https://github.com/antoineleno/EduPathway.git
 ```
 
 *2. Change the working directory*
 
 ```bash
-cd alx_finale_porfolio
+cd EduPathway
 ``` 
 
 *3. Create a virtual environment*
@@ -66,15 +66,15 @@ cd web_flask; python3 app.py
 
 
 ## 📘  *How to use this project*
-*After completing the installation steps, an admin, supplier and client users will be created with the following credentials :*
-> - ***email***&nbsp;: *rmarketadmin@gmail.com*
+*After completing the installation steps, an admin, and two students users will be created with the following credentials :*
+> - ***email***&nbsp;: *edupathwayadmin@gmail.com*
 > - ***password*** : *edupathwaypassword*
 
-> - ***email***&nbsp;: *supplier@gmail.com*
-> - ***password*** : *supplierpassword*
+> - ***email***&nbsp;: *nouhandoumbouya@gmail.com*
+> - ***password*** : *nouhanpassword*
 
-> - ***email***&nbsp;: *client@gmail.com*
-> - ***password*** : *clientpassword*
+> - ***email***&nbsp;: *alisena@gmail.com*
+> - ***password*** : *alisenapassword*
 
 ## 👯 *3. Code Contributors*
 

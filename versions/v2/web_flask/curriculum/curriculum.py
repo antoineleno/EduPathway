@@ -190,6 +190,16 @@ def course_content():
         if course_id is not None:
             course = storage.get_object(Course, id=course_id)
             program_id = course.program.id
+            user_enrollment = storage.get_object(Enrollment,
+                                                 user_id=current_user.id,
+                                                 program_id=program_id)
+            print(user_enrollment)
+            if user_enrollment is None:
+                message = """You need to enrolled first before seeing the content of this course"""
+                flash(message, "error")
+                return redirect(url_for('app_views_home.home'))
+            course = storage.get_object(Course, id=course_id)
+            program_id = course.program.id
             all_resources = course.resources
             sorted_resources = sorted(all_resources,
                                     key=lambda resource: resource.created_at)
