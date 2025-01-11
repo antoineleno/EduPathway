@@ -137,13 +137,13 @@ cd; cd EduPathway/versions/v2/web_flask; python3 app.py
     <img src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="Instagram" height="20" width="20"/>
   </a>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="mailto:bamadodu634@gmail.com">
+  <a href="mailto:mdislam0996@gmail.com">
     <img src="versions/v2/web_flask/home/static/img/email.png" alt="Instagram" height="20" width="20" />
   </a>
-  <a href="https://github.com/Amadou001">
+  <a href="https://github.com/mrirashid">
       <img src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/github.svg" alt="Instagram" height="20" width="20" />
   </a>
-  <a href="https://instagram.com/amadou4176" target="_blank">
+  <a href="https://www.instagram.com/mri_rashid?igsh=MWdjbTM4dWk0ZGQ1OA==" target="_blank">
     <img src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="Instagram" height="20" width="20" />
   </a>
 </p>
