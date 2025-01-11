@@ -60,12 +60,12 @@ sudo mysql -u root -p < requirements/room_trigger.sql
 *version 1*
 
 ```bash
-cd; cd edupathway/versions/v1/web_flask; python3 app.py
+cd; cd EduPathway/versions/v1/web_flask; python3 app.py
 ```
 *version 2*
 
 ```bash
-cd; cd edupathway/versions/v2/web_flask; python3 app.py
+cd; cd EduPathway/versions/v2/web_flask; python3 app.py
 ```
 🌟 You are all set!
 
