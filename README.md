@@ -10,7 +10,7 @@
 *Edupathway 🎓 is a platform dedicated to supporting SDG 4: Quality Education by providing 100% free, secure, and accessible solutions for students and educational institutions. Our mission is to break financial barriers and ensure that education is truly accessible to everyone. From tuition payments to managing student records and facilitating seamless transactions, Eduthpay eliminates all costs for users, creating a world where education is a right, not a privilege.*
 
 - ### *What Does Edupathway Do?*
-*Provides completely free payment solutions to ensure that financial barriers never hinder access to education. Offers a simple and secure way for students to make tuition payments, view payment histories, and receive receipts—all at no cost. Enables educational institutions to efficiently manage student payments and records without any charges. Promotes transparency and ease of use, empowering students and institutions with tools for seamless transactions and effective financial management.*
+*Edupathway helps students take any program or course they wish by providing 100% free, secure, and accessible payment solutions. It tracks students' progress and evolution throughout their academic journey, ensuring they have all the resources needed to succeed. With a simple and user-friendly platform, Edupathway empowers students to manage their tuition payments, view their progress, and access their records—all at no cost. By eliminating financial barriers, Edupathway makes education accessible to everyone, turning learning into a right, not a privilege*
 - ### *Technologies used*
 <p align="center"> </a> <a href="https://www.linux.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="40" height="40"/> </a> <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a> <a href="https://www.mysql.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="40" height="40"/> </a> <a href="https://www.nginx.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nginx/nginx-original.svg" alt="nginx" width="40" height="40"/> </a> <a href="https://getbootstrap.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-plain-wordmark.svg" alt="bootstrap" width="40" height="40"/> </a> <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a> <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> </a>  </p>
 
@@ -51,17 +51,22 @@ pip install -r requirements/requirements.txt
 ```bash
 sudo mysql -u root -p < requirements/database_setup.sql
 ```
-*7. Set up the trigger for subcription management*
+*7. Set up the trigger for room*
 ```bash
-sudo mysql -u root -p < requirements/subcription.sql
+sudo mysql -u root -p < requirements/room_trigger.sql
 ```
 
 *8. Change the working directory and Run the app*
+*version 1*
 
 ```bash
-cd web_flask; python3 app.py
+cd; cd edupathway/versions/v1/web_flask; python3 app.py
 ```
+*version 2*
 
+```bash
+cd; cd edupathway/versions/v2/web_flask; python3 app.py
+```
 🌟 You are all set!
 
 
@@ -79,7 +84,7 @@ cd web_flask; python3 app.py
 ## 👯 *3. Code Contributors*
 
 <p align="center">
-  <a href="https://github.com/antoineleno/final_porfolio/graphs/contributors">
+  <a href="https://github.com/antoineleno/EduPathway/graphs/contributors">
     <img src="versions/v2/web_flask/home/static/img/antoineleno.png" alt="Profile Picture" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-right: 20px;">
     <img src="versions/v2/web_flask/home/static/img/nouhandoubouya.png" alt="Profile Picture" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-right: 20px;">
     <img src="versions/v2/web_flask/home/static/img/alisena_d.png" alt="Profile Picture" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-right: 20px;">
@@ -143,27 +148,8 @@ cd web_flask; python3 app.py
   </a>
 </p>
 
-## 🙇 *4. Special Thanks to*
 
-- [*ALX Software Engineering*](https://www.alxafrica.com/where-did-the-alx-software-engineering-programme-go/)  *for providing us with an incredible training experience.*
-- [*Mastercard Foundation*](https://mastercardfdn.org/)  *for generously funding this transformative training opportunity.*
-- [*Holberton Inc*](https://www.holbertonschool.com/)  *for their collaboration in powering this exceptional learning journey.*
-
-
-
-## 🚀 *5. Demo*
-
-<p align="center">
-  <a href="https://www.youtube.com/watch?v=hPYDavftd8s&list=RDMM7b9z-YcDUrc&index=9" target="blank">
-    <img src="https://img.shields.io/website?url=https%3A%2F%2Fyour-video-link-here.com&logo=youtube&style=flat-square" alt="Demo Video" />
-  </a>
-</p>
-
-
-## 📜 *6. License*
-*Please refer to the included license file in the repository for detailed information.*
-
-## ✅ *7. Tests*
+## ✅ *4. Tests*
 *Run the following command from the root of the project directory to execute all tests and verify the software functionality :*
 
 *For version 1*
@@ -175,7 +161,7 @@ cd; cd EduPathway/versions/v1; python -m unittest discover -v tests
 cd; cd EduPathway/versions/v2; python -m unittest discover -v tests
 ```
 
-## 🏅 *8. Badge*
+## 🏅 *5. Badge*
 <p align="center">
   <a href="https://github.com/antoineleno/alx_finale_porfolio/blob/main/LICENSE" target="blank">
     <img src="https://img.shields.io/github/license/antoineleno/alx_finale_porfolio?style=flat-square" alt="alx_finale_porfolio license" />
@@ -197,7 +183,3 @@ cd; cd EduPathway/versions/v2; python -m unittest discover -v tests
     <img src="https://img.shields.io/github/contributors/antoineleno/alx_finale_porfolio?style=flat-square" alt="alx_finale_porfolio contributors"/>
   </a>
 </p>
-
-
-
-

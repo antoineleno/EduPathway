@@ -1,3 +1,4 @@
+use edupathway_db;
 DELIMITER $$
 
 CREATE EVENT IF NOT EXISTS decrement_room_duration
