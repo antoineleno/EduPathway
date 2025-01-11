@@ -90,7 +90,7 @@ cd web_flask; python3 app.py
 
 > ### 📫 *How to reach us*
 <p align="center">
-  <strong>Antoine LENO</strong> &nbsp;&nbsp;&nbsp;&nbsp; <strong>Nouhan DOUMBOUYA</strong> &nbsp;&nbsp;&nbsp;&nbsp; <strong>Alisena DANISHWER</strong> &nbsp;&nbsp;&nbsp;&nbsp; <strong>Maria IQBAL</strong> &nbsp;&nbsp;&nbsp;&nbsp; <strong>MD Rashidul ISLAM</strong><br>
+  <strong>A</strong> &nbsp;&nbsp;&nbsp;&nbsp; <strong>N</strong> &nbsp;&nbsp;&nbsp;&nbsp; <strong>Al</strong> &nbsp;&nbsp;&nbsp;&nbsp; <strong>f</strong> &nbsp;&nbsp;&nbsp;&nbsp; <strong>M</strong><br>
   <a href="mailto:lenoantoine2000@gmail.com">
       <img src="versions/v2/web_flask/home/static/img/email.png" alt="Instagram" height="20" width="20" />
   </a>
