@@ -165,8 +165,13 @@ cd web_flask; python3 app.py
 
 ## ✅ *7. Tests*
 *Run the following command from the root of the project directory to execute all tests and verify the software functionality :*
+*For version one*
 ```bash
-python -m unittest discover -v tests
+cd; cd EduPathway/versions/v1; python -m unittest discover -v tests
+```
+*For version two*
+```bash
+cd; cd EduPathway/versions/v1; python -m unittest discover -v tests
 ```
 
 ## 🏅 *8. Badge*
