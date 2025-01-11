@@ -154,11 +154,11 @@ cd; cd EduPathway/versions/v2/web_flask; python3 app.py
 
 *For version 1*
 ```bash
-cd; cd EduPathway/versions/v1; python -m unittest discover -v tests
+cd; cd EduPathway/versions/v1; python3 -m unittest discover -v tests
 ```
 *For version 2*
 ```bash
-cd; cd EduPathway/versions/v2; python -m unittest discover -v tests
+cd; cd EduPathway/versions/v2; python3 -m unittest discover -v tests
 ```
 
 ## 🏅 *5. Badge*
