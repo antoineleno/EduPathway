@@ -56,12 +56,13 @@ sudo mysql -u root -p < requirements/room_trigger.sql
 ```
 
 *8. Change the working directory and Run the app*
-*version 1*
+
+### *For version 1*
 
 ```bash
 cd; cd EduPathway/versions/v1/web_flask; python3 app.py
 ```
-*version 2*
+### *For version 2*
 
 ```bash
 cd; cd EduPathway/versions/v2/web_flask; python3 app.py
