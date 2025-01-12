@@ -4,7 +4,6 @@
        style="width: 40px; height: 40px; border-radius: 50%; border: 2px dashed orange; padding: 5px; vertical-align: middle;"> 
   <span style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">EduPathway</span> 
 </h1>
-<img alt="Data science" width="1200" src="versions/v2/web_flask/home/static/img/tableofcontents.png">
 
 ## 🔭 *1. Project Description*
 *Edupathway 🎓 is a platform dedicated to supporting SDG 4: Quality Education by providing 100% free, secure, and accessible solutions for students and educational institutions. Our mission is to break financial barriers and ensure that education is truly accessible to everyone. From tuition payments to managing student records and facilitating seamless transactions, Eduthpay eliminates all costs for users, creating a world where education is a right, not a privilege.*
