@@ -189,17 +189,17 @@
 {% endblock %}
  
 <nav class="adminnav">
-    <a href="#createProgram">Create Program</a>
-    <a href="#manageCourses">Manage Courses</a>
-    <a href="#manageResources">Manage Resources</a>
-    <a href="#manageProjects">Manage Projects</a>
-    <a href="#manageQuizzes">Manage Quizzes</a>
+    <a href="#createProgram">Add Program</a>
+    <a href="#manageCourses">Add Courses</a>
+    <a href="#manageResources">Add Resources</a>
+    <a href="#manageProjects">Add Projects</a>
+    <a href="#manageQuizzes">Add Quizzes</a>
 </nav>
 <div class="container">
     <div class="container" id="createProgram" >
         <div class="container">
             <section class="card">
-                <h2>Create Program</h2>
+                <h2>Add Program</h2>
                 <form method="POST" action="{{ url_for('app_views_admin.home') }}" enctype="multipart/form-data">
                     <input type="hidden" name="form_identifier" value="create_program_form">
                     
@@ -223,7 +223,7 @@
     <div class="container" id="manageCourses" >
         <div class="container">
             <section class="card">
-                <h2>Manage Course</h2>
+                <h2>Add Course</h2>
                 <form method="POST" action="{{ url_for('app_views_admin.home') }}" enctype="multipart/form-data">
                     <input type="hidden" name="form_identifier" value="create_course_form">
                     
@@ -256,7 +256,7 @@
     <div class="container" id="manageResources" >
         <div class="container">
             <section class="card">
-                <h2>Manage Resources</h2>
+                <h2>Add Resources</h2>
                 <form method="POST" action="{{ url_for('app_views_admin.home') }}">
                     <input type="hidden" name="form_identifier" value="create_resource_form">
             
@@ -285,7 +285,7 @@
 <div class="container" id="manageProjects">
     <div class="container">
         <section  class="card">
-            <h2>Manage Projects</h2>
+            <h2>Add Projects</h2>
             <form method="POST" action="{{ url_for('app_views_admin.home') }}" id="projectForm">
                 <input type="hidden" name="form_identifier" value="create_project_form">
                 
@@ -319,7 +319,7 @@
 <div class="container" id="manageQuizzes">
     <div class="container">
         <section class="card">
-            <h2>Manage Quizzes</h2>
+            <h2>Add Quizzes</h2>
             <form method="POST" action="{{ url_for('app_views_admin.home') }}" id="quizForm">
                 <input type="hidden" name="form_identifier" value="create_quiz_form">
                 
