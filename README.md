@@ -49,6 +49,7 @@ pip install -r requirements/requirements.txt
 *6. Set up the database*
 ```bash
 sudo mysql -u root -p < requirements/database_setup.sql
+sudo mysql -u root -p < requirements/edupathway_db.sql
 ```
 *7. Set up the trigger for room*
 ```bash
