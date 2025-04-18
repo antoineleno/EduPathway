@@ -82,7 +82,7 @@ cd; cd EduPathway/versions/v2/web_flask; python3 app.py
 > - ***email***&nbsp;: *alisena@gmail.com*
 > - ***password*** : *alisenapassword*
 
-## 👯 *3. Code Contributors*
+## 👯 *3. Project Contributors*
 
 <p align="center">
   <a href="https://github.com/antoineleno/EduPathway/graphs/contributors">
