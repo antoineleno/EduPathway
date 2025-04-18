@@ -152,13 +152,13 @@ cd; cd EduPathway/versions/v2/web_flask; python3 app.py
 
 ## 🎯 *Roles and Contributions*
 
-| **Contributor** | **Role** | **Contributions** |
-|-----------------|----------|-------------------|
-| **Antoine**     | Full-Stack Developer | Project architecture, Flask backend, API integration, UI/UX design |
-| **Nouhan**      | Backend Engineer | MySQL database design, trigger setup, user authentication logic |
-| **Alisena**     | Frontend Developer | HTML/CSS layouts, Bootstrap styling, JavaScript interactivity |
-| **Maria**       | QA & Testing | Bug tracking, test case creation, performance optimization |
-| **Rashidul**    | DevOps Engineer | Nginx configuration, deployment scripts, virtual environment setup |
+| **Contributor**           | **Role**                  | **Contributions** |
+|---------------------------|----------------------------|-------------------|
+| **Antoine Leno**          | Backend & Deployment       | Flask backend, MySQL integration, Trigger setup, Deployment, README, UI logic |
+| **Nouhan Doumbouya**      | Frontend Developer         | HTML/CSS/Bootstrap, JavaScript interactivity, Page responsiveness |
+| **Alisena Danishwer**     | Auth & Access Management   | Login logic, Session management, Access control implementation |
+| **Maria Iqbal**           | Data & Dashboard Engineer  | Data modeling, Student progress tracking features, Admin dashboard logic |
+| **Rashidul Islam**        | QA & Optimization          | Error handling, Bug fixing, Testing, Code optimization |
 
 
 ## ✅ *4. Tests*
