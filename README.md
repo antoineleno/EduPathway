@@ -94,16 +94,6 @@ cd; cd EduPathway/versions/v2/web_flask; python3 app.py
   </a>
 </p>
 
-## 🎯 *Roles and Contributions*
-
-| **Contributor** | **Role** | **Contributions** |
-|-----------------|----------|-------------------|
-| **Antoine**     | Full-Stack Developer | Project architecture, Flask backend, API integration, UI/UX design |
-| **Nouhan**      | Backend Engineer | MySQL database design, trigger setup, user authentication logic |
-| **Alisena**     | Frontend Developer | HTML/CSS layouts, Bootstrap styling, JavaScript interactivity |
-| **Maria**       | QA & Testing | Bug tracking, test case creation, performance optimization |
-| **Rashidul**    | DevOps Engineer | Nginx configuration, deployment scripts, virtual environment setup |
-
 
 > ### 📫 *How to reach us*
 <p align="center">
@@ -159,6 +149,16 @@ cd; cd EduPathway/versions/v2/web_flask; python3 app.py
     <img src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="Instagram" height="20" width="20" />
   </a>
 </p>
+
+## 🎯 *Roles and Contributions*
+
+| **Contributor** | **Role** | **Contributions** |
+|-----------------|----------|-------------------|
+| **Antoine**     | Full-Stack Developer | Project architecture, Flask backend, API integration, UI/UX design |
+| **Nouhan**      | Backend Engineer | MySQL database design, trigger setup, user authentication logic |
+| **Alisena**     | Frontend Developer | HTML/CSS layouts, Bootstrap styling, JavaScript interactivity |
+| **Maria**       | QA & Testing | Bug tracking, test case creation, performance optimization |
+| **Rashidul**    | DevOps Engineer | Nginx configuration, deployment scripts, virtual environment setup |
 
 
 ## ✅ *4. Tests*
