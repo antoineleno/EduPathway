@@ -155,8 +155,8 @@ cd; cd EduPathway/versions/v2/web_flask; python3 app.py
 | **Contributor**           | **Role**                  | **Contributions** |
 |---------------------------|---------------------------|-------------------|
 | **Antoine Leno**          | Backend Developer          | Backend development (Flask, MySQL), database handling, and logic implementation. |
-| **Nouhan Doumbouya**      | Frontend Developer         | Front-end development (HTML, CSS, Bootstrap), template integration, UI customization, and JavaScript interactivity. <br> &nbsp;&nbsp;•  Developed admin dashboard for managing programs, courses, resources, projects, and quizzes <br> &nbsp;&nbsp;• Built program synopsis page displaying all related courses, resources, projects, and quizzes <br> &nbsp;&nbsp;• Developed course content pages with access to resources, projects, and quizzes |
-| **Alisena Danishwer**     | Frontend Developer         | Login logic, Session management, Access control implementation |
+| **Nouhan Doumbouya**      | Frontend Developer         | Front-end development (HTML, CSS, Bootstrap), template integration, UI customization, and JavaScript interactivity. <br> &nbsp;&nbsp;• Developed admin dashboard for managing programs, courses, resources, projects, and quizzes <br> &nbsp;&nbsp;• Built program synopsis page displaying all related courses, resources, projects, and quizzes <br> &nbsp;&nbsp;• Developed course content pages with access to resources, projects, and quizzes |
+| **Alisena Danishwer**     | Frontend Developer         | Login logic, Session management, Access control implementation <br> &nbsp;&nbsp;• Developed user profile interface with editable user info <br> &nbsp;&nbsp;• Styled and implemented access control visuals |
 | **Maria Iqbal**           | Data & Dashboard Engineer  | Data modeling, Student progress tracking features, Admin dashboard logic |
 | **Rashidul Islam**        | QA & Optimization          | Error handling, Bug fixing, Testing, Code optimization |
 
